@@ -119,7 +119,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Pessoa.cs" />
+    <Compile Include="ViewModels\CentroCustoViewModel.cs" />
+    <Compile Include="ViewModels\ClasseViagemViewModel.cs" />
+    <Compile Include="ViewModels\PessoaViewModel.cs" />
+    <Compile Include="ViewModels\SolicitacaoViagemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
