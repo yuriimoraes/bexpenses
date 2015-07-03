@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44C1B61F-BFA4-48EB-BC91-1D5FB743056E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BExpensesDDD.Domain</RootNamespace>
+    <AssemblyName>BExpensesDDD.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Entities\CentroCusto.cs" />
+    <Compile Include="Entities\ClasseViagem.cs" />
+    <Compile Include="Entities\DespesaAcomodacao.cs" />
+    <Compile Include="Entities\DespesaCarro.cs" />
+    <Compile Include="Entities\DespesaCarroAluguel.cs" />
+    <Compile Include="Entities\DespesaOutro.cs" />
+    <Compile Include="Entities\DespesaPerDiem.cs" />
+    <Compile Include="Entities\DespesaPrincipal.cs" />
+    <Compile Include="Entities\DespesaTransporte.cs" />
+    <Compile Include="Entities\DespesaViagem.cs" />
+    <Compile Include="Entities\Moeda.cs" />
+    <Compile Include="Entities\Pais.cs" />
+    <Compile Include="Entities\ParametrosSistema.cs" />
+    <Compile Include="Entities\Pessoa.cs" />
+    <Compile Include="Entities\RespostaSolicitacao.cs" />
+    <Compile Include="Entities\SolicitacaoReembolso.cs" />
+    <Compile Include="Entities\SolicitacaoViagem.cs" />
+    <Compile Include="Entities\TaxaCambio.cs" />
+    <Compile Include="Entities\TipoAcomodacao.cs" />
+    <Compile Include="Entities\TipoDespesaCarro.cs" />
+    <Compile Include="Entities\TipoViagem.cs" />
+    <Compile Include="Interfaces\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaAcomodacao.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaCarro.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaCarroAluguel.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaOutro.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaPerDiem.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaPrincipal.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaTransporte.cs" />
+    <Compile Include="Interfaces\IRepositoryDespesaViagem.cs" />
+    <Compile Include="Interfaces\IRepositoryMoeda.cs" />
+    <Compile Include="Interfaces\IRepositoryPais.cs" />
+    <Compile Include="Interfaces\IRepositoryParametrosSistema.cs" />
+    <Compile Include="Interfaces\IRepositoryRespostaSolicitacao.cs" />
+    <Compile Include="Interfaces\IRepositoryCentroCusto.cs" />
+    <Compile Include="Interfaces\IRepositoryClasseViagem.cs" />
+    <Compile Include="Interfaces\IRepositoryPessoa.cs" />
+    <Compile Include="Interfaces\IRepositorySolicitacaoReembolso.cs" />
+    <Compile Include="Interfaces\IRepositorySolicitacaoViagem.cs" />
+    <Compile Include="Interfaces\IRepositoryTaxaCambio.cs" />
+    <Compile Include="Interfaces\IRepositoryTipoAcomodacao.cs" />
+    <Compile Include="Interfaces\IRepositoryTipoDespesaCarro.cs" />
+    <Compile Include="Interfaces\IRepositoryTipoViagem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
