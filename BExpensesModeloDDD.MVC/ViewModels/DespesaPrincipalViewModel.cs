@@ -22,7 +22,7 @@ namespace BExpensesModeloDDD.MVC.ViewModels
 
         public virtual IEnumerable<DespesaAcomodacaoViewModel> DespesasAcomodacoes { get; set; }
         public virtual IEnumerable<DespesaCarroViewModel> DespesasCarros { get; set; }
-        public virtual IEnumerable<DespesaCarroAlguelViewModel> DespesasCarrosAluguel { get; set; }
+        public virtual IEnumerable<DespesaCarroAluguelViewModel> DespesasCarrosAluguel { get; set; }
         public virtual IEnumerable<DespesaOutroViewModel> DespesasOutros { get; set; }
         public virtual IEnumerable<DespesaPerDiemViewModel> DespesasPerDiem { get; set; }
         public virtual IEnumerable<DespesaTransporteViewModel> DespesasTransportes { get; set; }

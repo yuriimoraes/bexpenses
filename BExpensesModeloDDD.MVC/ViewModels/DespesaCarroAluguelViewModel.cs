@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 namespace BExpensesModeloDDD.MVC.ViewModels
 {
-    public class DespesaCarroAlguelViewModel
+    public class DespesaCarroAluguelViewModel
     {   
         [Key]
         public int DespesaCarroAluguelID { get; set; }
