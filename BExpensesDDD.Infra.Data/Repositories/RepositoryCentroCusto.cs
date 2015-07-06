@@ -10,5 +10,6 @@ namespace BExpensesDDD.Infra.Data.Repositories
         {
             return Db.CentroCustos.Where(c => c.Descricao == nome);
         }
+        
     }
 }

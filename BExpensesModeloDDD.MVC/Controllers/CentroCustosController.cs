@@ -11,7 +11,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
     public class CentroCustosController : Controller
     {
         private readonly RepositoryCentroCusto _centrosCustosRepository = new RepositoryCentroCusto();
-        //
+        //  
         // GET: /CentroCustos/
         public ActionResult Index()
         {
@@ -28,9 +28,17 @@ namespace BExpensesModeloDDD.MVC.Controllers
 
         //
         // GET: /CentroCustos/Create
-        public ActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CentroCustoViewModel centrocusto)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var centrocustoDomain = Mapper.Map<CentroCustoViewModel, CentroCusto>(centrocusto);
+                _centrosCustosRepository.Add(centrocustoDomain);
+                return RedirectToAction("Index");
+            }
+            return View(centrocusto);
         }
 
         //
