@@ -25,9 +25,5 @@ namespace BExpensesDDD.Domain.Entities
 
 
 
-
-
-
-
     }
 }

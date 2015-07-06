@@ -76,16 +76,16 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DisplayName("Aprovador 1")]
         public int Aprovador1ID { get; set; }
 
-        //public virtual Pessoa Aprovador1 { get; set; }
+        public virtual PessoaViewModel Aprovador1 { get; set; }
         [DisplayName("Aprovador 2")]
         public int Aprovador2ID { get; set; }
 
-        //public virtual Pessoa Aprovador2 { get; set; }
+        public virtual PessoaViewModel Aprovador2 { get; set; }
         [DisplayName("Centro Custo")]
         public int CentroCustoID { get; set; }
         public virtual CentroCustoViewModel CentroCusto { get; set; }
 
-        //public virtual IEnumerable<SolicitacaoViagem> SolicitacoesViagens { get; set; }
-        //public virtual IEnumerable<RespostaSolicitacao> RespostasSolicitacoes { get; set; }
+        public virtual IEnumerable<SolicitacaoViagemViewModel> SolicitacoesViagens { get; set; }
+        public virtual IEnumerable<RespostaSolicitacaoViewModel> RespostasSolicitacoes { get; set; }
     }
 }
