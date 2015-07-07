@@ -1,48 +1,43 @@
-﻿using System.Web.Mvc;
-using BExpensesDDD.Domain;
-using BExpensesDDD.Infra.Data.Repositories;
-using AutoMapper;
+﻿using AutoMapper;
 using BExpensesDDD.Domain.Entities;
+using BExpensesDDD.Infra.Data.Repositories;
 using BExpensesModeloDDD.MVC.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
-    public class CentroCustosController : Controller
+    public class DespesaCarroController : Controller
     {
-        private readonly RepositoryCentroCusto _centrosCustosRepository = new RepositoryCentroCusto();
-        //  
-        // GET: /CentroCustos/
+        private readonly RepositoryDespesaCarro _despesaCarroRepository = new RepositoryDespesaCarro();
+        
+        //
+        // GET: /DespesaCarro/
         public ActionResult Index()
         {
-            var centroCustoViewModel = Mapper.Map<IEnumerable<CentroCusto>, IEnumerable<CentroCustoViewModel>>(_centrosCustosRepository.GetAll());
-            return View(centroCustoViewModel);
+            var despesaCarroViewModel = Mapper.Map<IEnumerable<DespesaCarro>, IEnumerable<DespesaCarroViewModel>>(_despesaCarroRepository.GetAll());
+            return View(despesaCarroViewModel);
         }
 
         //
-        // GET: /CentroCustos/Details/5
+        // GET: /DespesaCarro/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
         //
-        // GET: /CentroCustos/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CentroCustoViewModel centrocusto)
+        // GET: /DespesaCarro/Create
+        public ActionResult Create()
         {
-            if (ModelState.IsValid)
-            {
-                var centrocustoDomain = Mapper.Map<CentroCustoViewModel, CentroCusto>(centrocusto);
-                _centrosCustosRepository.Add(centrocustoDomain);
-                return RedirectToAction("Index");
-            }
-            return View(centrocusto);
+            return View();
         }
 
         //
-        // POST: /CentroCustos/Create
+        // POST: /DespesaCarro/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -59,14 +54,14 @@ namespace BExpensesModeloDDD.MVC.Controllers
         }
 
         //
-        // GET: /CentroCustos/Edit/5
+        // GET: /DespesaCarro/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         //
-        // POST: /CentroCustos/Edit/5
+        // POST: /DespesaCarro/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -83,14 +78,14 @@ namespace BExpensesModeloDDD.MVC.Controllers
         }
 
         //
-        // GET: /CentroCustos/Delete/5
+        // GET: /DespesaCarro/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         //
-        // POST: /CentroCustos/Delete/5
+        // POST: /DespesaCarro/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

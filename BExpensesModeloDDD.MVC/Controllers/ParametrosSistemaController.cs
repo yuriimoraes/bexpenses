@@ -1,0 +1,104 @@
+﻿using AutoMapper;
+using BExpensesDDD.Domain.Entities;
+using BExpensesDDD.Infra.Data.Repositories;
+using BExpensesModeloDDD.MVC.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace BExpensesModeloDDD.MVC.Controllers
+{
+    public class ParametrosSistemaController : Controller
+    {
+        private readonly RepositoryParametrosSistema _parametrosSistemaRepository = new RepositoryParametrosSistema();
+        
+        //
+        // GET: /ParametrosSistema/
+        public ActionResult Index()
+        {
+            var parametrosSistemaRepositoryViewModel = Mapper.Map<IEnumerable<ParametrosSistema>, IEnumerable<ParametrosSistemaViewModel>>(_parametrosSistemaRepository.GetAll());
+            return View(parametrosSistemaRepositoryViewModel);
+        }
+
+        //
+        // GET: /ParametrosSistema/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        //
+        // GET: /ParametrosSistema/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /ParametrosSistema/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /ParametrosSistema/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /ParametrosSistema/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /ParametrosSistema/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /ParametrosSistema/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
+}

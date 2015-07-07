@@ -1,10 +1,9 @@
 ﻿
 using System.Collections.Generic;
-
-namespace BExpensesDDD.Domain.Interfaces
+namespace BExpensesDDD.Domain.Interfaces.Services
 {
-    public interface IRepositoryBase<TEntity> where TEntity : class
-    {
+    public interface IServiceBase<TEntity> where TEntity : class
+    { 
         void Add(TEntity obj);
         TEntity GetByID(int id);
         IEnumerable<TEntity> GetAll();

@@ -2,7 +2,8 @@
 
 namespace BExpensesDDD.Domain.Interfaces
 {
-    public interface IRepositoryTipoDespesaCarro : IRepositoryBase<TipoDespesaCarro>
+    public interface IRepositoryTipoViagem : IRepositoryBase<TipoViagem>
     {
+
     }
 }

@@ -115,6 +115,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DespesaAcomodacao\" />
+    <Folder Include="Views\DespesaCarroAluguel\" />
+    <Folder Include="Views\DespesaCarro\" />
+    <Folder Include="Views\DespesaOutro\" />
+    <Folder Include="Views\DespesaPerDiem\" />
+    <Folder Include="Views\DespesaPrincipal\" />
+    <Folder Include="Views\DespesaTransporte\" />
+    <Folder Include="Views\DespesaViagem\" />
+    <Folder Include="Views\Moeda\" />
+    <Folder Include="Views\Pais\" />
+    <Folder Include="Views\ParametrosSistema\" />
+    <Folder Include="Views\Pessoa\" />
+    <Folder Include="Views\RespostaSolicitacao\" />
+    <Folder Include="Views\SolicitacaoReembolso\" />
+    <Folder Include="Views\SolicitacaoViagem\" />
+    <Folder Include="Views\TaxaCambio\" />
+    <Folder Include="Views\TipoAcomodacao\" />
+    <Folder Include="Views\TipoDespesaCarro\" />
+    <Folder Include="Views\TipoViagem\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -123,8 +142,28 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
-    <Compile Include="Controllers\CentroCustosController.cs" />
+    <Compile Include="Controllers\CentroCustoController.cs" />
+    <Compile Include="Controllers\ClasseViagemController.cs" />
+    <Compile Include="Controllers\DespesaAcomodacaoController.cs" />
+    <Compile Include="Controllers\DespesaCarroAluguelController.cs" />
+    <Compile Include="Controllers\DespesaCarroController.cs" />
+    <Compile Include="Controllers\DespesaOutroController.cs" />
+    <Compile Include="Controllers\DespesaPerDiemController.cs" />
+    <Compile Include="Controllers\DespesaPrincipalController.cs" />
+    <Compile Include="Controllers\DespesaTransporteController.cs" />
+    <Compile Include="Controllers\DespesaViagemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MoedaController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ParametrosSistemaController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
+    <Compile Include="Controllers\RespostaSolicitacaoController.cs" />
+    <Compile Include="Controllers\SolicitacaoReembolsoController.cs" />
+    <Compile Include="Controllers\SolicitacaoViagemController.cs" />
+    <Compile Include="Controllers\TaxaCambioController.cs" />
+    <Compile Include="Controllers\TipoAcomodacaoController.cs" />
+    <Compile Include="Controllers\TipoDespesaCarroController.cs" />
+    <Compile Include="Controllers\TipoViagemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,8 +223,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\CentroCustos\Index.cshtml" />
-    <Content Include="Views\CentroCustos\Create.cshtml" />
+    <Content Include="Views\ClasseViagem\Index.cshtml" />
+    <Content Include="Views\ClasseViagem\Create.cshtml" />
+    <Content Include="Views\CentroCusto\Index.cshtml" />
+    <Content Include="Views\CentroCusto\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BExpensesDDD.Domain\BExpensesDDD.Domain.csproj">

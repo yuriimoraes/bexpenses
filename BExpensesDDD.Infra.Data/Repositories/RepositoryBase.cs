@@ -17,7 +17,7 @@ namespace BExpensesDDD.Infra.Data.Repositories
             Db.SaveChanges();
         }
 
-        public TEntity GetByID(int id)
+        public TEntity GetById(int id)
         {
             return Db.Set<TEntity>().Find(id);
         }
@@ -40,10 +40,14 @@ namespace BExpensesDDD.Infra.Data.Repositories
             Db.Set<TEntity>().Remove(obj);
             Db.SaveChanges();
         }
-
         public void Dipose()
         {
-            throw new NotImplementedException();
+            Db.Dispose();
+        }
+
+        public void Dispose()
+        {
+            Db.Dispose();
         }
     }
 }

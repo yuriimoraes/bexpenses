@@ -39,7 +39,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IAppServiceBase.cs" />
+    <Compile Include="Interface\ICentroCustoAppService.cs" />
+    <Compile Include="Interface\IClasseViagemAppService.cs" />
+    <Compile Include="Interface\IDespesaAcomodacaoAppService.cs" />
+    <Compile Include="Interface\IDespesaCarroAluguelAppService.cs" />
+    <Compile Include="Interface\IDespesaCarroAppService.cs" />
+    <Compile Include="Interface\IDespesaOutroAppService.cs" />
+    <Compile Include="Interface\IDespesaPerDiemAppService.cs" />
+    <Compile Include="Interface\IDespesaPrincipalAppService.cs" />
+    <Compile Include="Interface\IDespesaTransporteAppService.cs" />
+    <Compile Include="Interface\IDespesaViagemAppService.cs" />
+    <Compile Include="Interface\IMoedaAppService.cs" />
+    <Compile Include="Interface\IPaisAppService.cs" />
+    <Compile Include="Interface\IParametrosSistemaAppService.cs" />
+    <Compile Include="Interface\IPessoaAppService.cs" />
+    <Compile Include="Interface\IRespostaSolicitacaoAppService.cs" />
+    <Compile Include="Interface\ISolicitacaoReembolsoAppService.cs" />
+    <Compile Include="Interface\ISolicitacaoViagemAppService.cs" />
+    <Compile Include="Interface\ITaxaCambioAppService.cs" />
+    <Compile Include="Interface\ITipoAcomodacaoAppService.cs" />
+    <Compile Include="Interface\ITipoDespesaCarroAppService.cs" />
+    <Compile Include="Interface\ITipoViagemAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BExpensesDDD.Domain\BExpensesDDD.Domain.csproj">
+      <Project>{44c1b61f-bfa4-48eb-bc91-1d5fb743056e}</Project>
+      <Name>BExpensesDDD.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
