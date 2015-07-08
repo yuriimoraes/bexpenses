@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Service\AppServiceBase.cs" />
     <Compile Include="Interface\IAppServiceBase.cs" />
     <Compile Include="Interface\ICentroCustoAppService.cs" />
     <Compile Include="Interface\IClasseViagemAppService.cs" />
@@ -62,6 +63,27 @@
     <Compile Include="Interface\ITipoDespesaCarroAppService.cs" />
     <Compile Include="Interface\ITipoViagemAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CentroCustoAppService.cs" />
+    <Compile Include="Service\ClasseViagemAppService.cs" />
+    <Compile Include="Service\DespesaAcomodacaoAppService.cs" />
+    <Compile Include="Service\DespesaCarroAluguelAppService.cs" />
+    <Compile Include="Service\DespesaCarroAppService.cs" />
+    <Compile Include="Service\DespesaOutroAppService.cs" />
+    <Compile Include="Service\DespesaPerDiemAppService.cs" />
+    <Compile Include="Service\DespesaPrincipalAppService.cs" />
+    <Compile Include="Service\DespesaTransporteAppService.cs" />
+    <Compile Include="Service\DespesaViagemAppService.cs" />
+    <Compile Include="Service\MoedaAppService.cs" />
+    <Compile Include="Service\PaisAppService.cs" />
+    <Compile Include="Service\ParametrosSistemaAppService.cs" />
+    <Compile Include="Service\PessoaAppService.cs" />
+    <Compile Include="Service\RespostaSolicitacaoAppService.cs" />
+    <Compile Include="Service\SolicitacaoReembolsoAppService.cs" />
+    <Compile Include="Service\SolicitacaoViagemAppService.cs" />
+    <Compile Include="Service\TaxaCambioAppService.cs" />
+    <Compile Include="Service\TipoAcomodacaoAppService.cs" />
+    <Compile Include="Service\TipoDespesaCarroAppService.cs" />
+    <Compile Include="Service\TipoViagemAppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BExpensesDDD.Domain\BExpensesDDD.Domain.csproj">
