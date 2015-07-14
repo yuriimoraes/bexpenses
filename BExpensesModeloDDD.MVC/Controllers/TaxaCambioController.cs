@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class TaxaCambioController : Controller
     {
-        private readonly RepositoryTaxaCambio _taxaCambioRepository = new RepositoryTaxaCambio();
+        private readonly ITaxaCambioAppService _taxaCambioApp;
+
+        public TaxaCambioController(ITaxaCambioAppService taxaCambioApp)
+        {
+            _taxaCambioApp = taxaCambioApp;
+        }
+
         //
         // GET: /TaxaCambio/
         public ActionResult Index()
         {
-            var taxaCambioViewModel = Mapper.Map<IEnumerable<TaxaCambio>, IEnumerable<TaxaCambioViewModel>>(_taxaCambioRepository.GetAll());
+            var taxaCambioViewModel = Mapper.Map<IEnumerable<TaxaCambio>, IEnumerable<TaxaCambioViewModel>>(_taxaCambioApp.GetAll());
             return View(taxaCambioViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /TaxaCambio/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var taxaCambio = _taxaCambioApp.GetById(id);
+            var taxaCambioViewModel = Mapper.Map<TaxaCambio, TaxaCambioViewModel>(taxaCambio);
+            return View(taxaCambioViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /TaxaCambio/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(TaxaCambioViewModel taxaCambio)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var taxaCambioDomain = Mapper.Map<TaxaCambioViewModel, TaxaCambio>(taxaCambio);
+                _taxaCambioApp.Add(taxaCambioDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(taxaCambio);
         }
 
         //
         // GET: /TaxaCambio/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var taxaCambio = _taxaCambioApp.GetById(id);
+            var taxaCambioViewModel = Mapper.Map<TaxaCambio, TaxaCambioViewModel>(taxaCambio);
+            return View(taxaCambioViewModel);
         }
 
         //
         // POST: /TaxaCambio/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(TaxaCambioViewModel taxaCambio)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var taxaCambioDomain = Mapper.Map<TaxaCambioViewModel, TaxaCambio>(taxaCambio);
+                _taxaCambioApp.Update(taxaCambioDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(taxaCambio);
         }
 
         //
         // GET: /TaxaCambio/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var taxaCambio = _taxaCambioApp.GetById(id);
+            var taxaCambioViewModel = Mapper.Map<TaxaCambio, TaxaCambioViewModel>(taxaCambio);
+
+            return View(taxaCambioViewModel);
         }
 
         //
         // POST: /TaxaCambio/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var taxaCambio = _taxaCambioApp.GetById(id);
+            _taxaCambioApp.Remove(taxaCambio);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

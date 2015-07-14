@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class MoedaController : Controller
     {
-        private readonly RepositoryMoeda _MoedaRepository = new RepositoryMoeda();
+        private readonly IMoedaAppService _moedaApp;
+
+        public MoedaController(IMoedaAppService moedaApp)
+        {
+            _moedaApp = moedaApp;
+        }
+
         //
         // GET: /Moeda/
         public ActionResult Index()
         {
-            var moedaViewModel = Mapper.Map<IEnumerable<Moeda>, IEnumerable<MoedaViewModel>>(_MoedaRepository.GetAll());
+            var moedaViewModel = Mapper.Map<IEnumerable<Moeda>, IEnumerable<MoedaViewModel>>(_moedaApp.GetAll());
             return View(moedaViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /Moeda/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var moeda = _moedaApp.GetById(id);
+            var moedaViewModel = Mapper.Map<Moeda, MoedaViewModel>(moeda);
+            return View(moedaViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /Moeda/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(MoedaViewModel moeda)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var moedaDomain = Mapper.Map<MoedaViewModel, Moeda>(moeda);
+                _moedaApp.Add(moedaDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(moeda);
         }
 
         //
         // GET: /Moeda/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var moeda = _moedaApp.GetById(id);
+            var moedaViewModel = Mapper.Map<Moeda, MoedaViewModel>(moeda);
+            return View(moedaViewModel);
         }
 
         //
         // POST: /Moeda/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(MoedaViewModel moeda)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var moedaDomain = Mapper.Map<MoedaViewModel, Moeda>(moeda);
+                _moedaApp.Update(moedaDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(moeda);
         }
 
         //
         // GET: /Moeda/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var moeda = _moedaApp.GetById(id);
+            var moedaViewModel = Mapper.Map<Moeda, MoedaViewModel>(moeda);
+
+            return View(moedaViewModel);
         }
 
         //
         // POST: /Moeda/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var moeda = _moedaApp.GetById(id);
+            _moedaApp.Remove(moeda);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

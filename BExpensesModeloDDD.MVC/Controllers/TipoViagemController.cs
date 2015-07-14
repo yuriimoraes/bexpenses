@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class TipoViagemController : Controller
     {
-        private readonly RepositoryTipoViagem _tipoViagemRepository = new RepositoryTipoViagem();
+        private readonly ITipoViagemAppService _tipoViagemApp;
+
+        public TipoViagemController(ITipoViagemAppService tipoViagemApp)
+        {
+            _tipoViagemApp = tipoViagemApp;
+        }
+
         //
         // GET: /TipoViagem/
         public ActionResult Index()
         {
-            var tipoViagemViewModel = Mapper.Map<IEnumerable<TipoViagem>, IEnumerable<TipoViagemViewModel>>(_tipoViagemRepository.GetAll());
+            var tipoViagemViewModel = Mapper.Map<IEnumerable<TipoViagem>, IEnumerable<TipoViagemViewModel>>(_tipoViagemApp.GetAll());
             return View(tipoViagemViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /TipoViagem/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var tipoViagem = _tipoViagemApp.GetById(id);
+            var tipoViagemViewModel = Mapper.Map<TipoViagem, TipoViagemViewModel>(tipoViagem);
+            return View(tipoViagemViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /TipoViagem/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(TipoViagemViewModel tipoViagem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var tipoViagemDomain = Mapper.Map<TipoViagemViewModel, TipoViagem>(tipoViagem);
+                _tipoViagemApp.Add(tipoViagemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(tipoViagem);
         }
 
         //
         // GET: /TipoViagem/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var tipoViagem = _tipoViagemApp.GetById(id);
+            var tipoViagemViewModel = Mapper.Map<TipoViagem, TipoViagemViewModel>(tipoViagem);
+            return View(tipoViagemViewModel);
         }
 
         //
         // POST: /TipoViagem/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(TipoViagemViewModel tipoViagem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var tipoViagemDomain = Mapper.Map<TipoViagemViewModel, TipoViagem>(tipoViagem);
+                _tipoViagemApp.Update(tipoViagemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(tipoViagem);
         }
 
         //
         // GET: /TipoViagem/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var tipoViagem = _tipoViagemApp.GetById(id);
+            var tipoViagemViewModel = Mapper.Map<TipoViagem, TipoViagemViewModel>(tipoViagem);
+
+            return View(tipoViagemViewModel);
         }
 
         //
         // POST: /TipoViagem/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var tipoViagem = _tipoViagemApp.GetById(id);
+            _tipoViagemApp.Remove(tipoViagem);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

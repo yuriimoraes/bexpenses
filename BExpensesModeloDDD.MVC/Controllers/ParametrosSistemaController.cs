@@ -7,26 +7,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class ParametrosSistemaController : Controller
     {
-        private readonly RepositoryParametrosSistema _parametrosSistemaRepository = new RepositoryParametrosSistema();
-        
+        private readonly IParametrosSistemaAppService _parametrosSistemaApp;
+
+        public ParametrosSistemaController(IParametrosSistemaAppService parametrosSistemaApp)
+        {
+            _parametrosSistemaApp = parametrosSistemaApp;
+        }
+
         //
         // GET: /ParametrosSistema/
         public ActionResult Index()
         {
-            var parametrosSistemaRepositoryViewModel = Mapper.Map<IEnumerable<ParametrosSistema>, IEnumerable<ParametrosSistemaViewModel>>(_parametrosSistemaRepository.GetAll());
-            return View(parametrosSistemaRepositoryViewModel);
+            var parametrosSistemaViewModel = Mapper.Map<IEnumerable<ParametrosSistema>, IEnumerable<ParametrosSistemaViewModel>>(_parametrosSistemaApp.GetAll());
+            return View(parametrosSistemaViewModel);
         }
 
         //
         // GET: /ParametrosSistema/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var parametrosSistema = _parametrosSistemaApp.GetById(id);
+            var parametrosSistemaViewModel = Mapper.Map<ParametrosSistema, ParametrosSistemaViewModel>(parametrosSistema);
+            return View(parametrosSistemaViewModel);
         }
 
         //
@@ -39,66 +47,65 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /ParametrosSistema/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ParametrosSistemaViewModel parametrosSistema)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var parametrosSistemaDomain = Mapper.Map<ParametrosSistemaViewModel, ParametrosSistema>(centrocusto);
+                _parametrosSistemaApp.Add(parametrosSistemaDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(parametrosSistema);
         }
+
 
         //
         // GET: /ParametrosSistema/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var parametrosSistema = _parametrosSistemaApp.GetById(id);
+            var parametrosSistemaViewModel = Mapper.Map<ParametrosSistema, ParametrosSistemaViewModel>(parametrosSistema);
+            return View(parametrosSistemaViewModel);
         }
 
         //
         // POST: /ParametrosSistema/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ParametrosSistemaViewModel parametrosSistema)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var parametrosSistemaDomain = Mapper.Map<ParametrosSistemaViewModel, ParametrosSistema>(parametrosSistema);
+                _parametrosSistemaApp.Update(parametrosSistemaDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(parametrosSistema);
         }
 
         //
         // GET: /ParametrosSistema/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var parametrosSistema = _parametrosSistemaApp.GetById(id);
+            var parametrosSistemaViewModel = Mapper.Map<ParametrosSistema, ParametrosSistemaViewModel>(parametrosSistema);
+
+            return View(parametrosSistemaViewModel);
         }
 
         //
         // POST: /ParametrosSistema/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var parametrosSistema = _parametrosSistemaApp.GetById(id);
+            _parametrosSistemaApp.Remove(parametrosSistema);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

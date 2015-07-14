@@ -20,11 +20,7 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [ScaffoldColumn(false)]
         public DateTime DataCadastro { get; set; }
         
-        [DisplayName("Data Atualização")]
-        public DateTime DataAtualizacao { get; set; }
         //Pessoa que atualizou
-
-
         [ScaffoldColumn(false)]
         public string UsuarioAtualizacao { get; set; }
 

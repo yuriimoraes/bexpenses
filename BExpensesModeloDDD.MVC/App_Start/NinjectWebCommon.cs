@@ -114,27 +114,26 @@ namespace BExpensesModeloDDD.MVC.App_Start
             kernel.Bind<ITipoDespesaCarroService>().To<TipoDespesaCarroService>();
             kernel.Bind<ITipoViagemService>().To<TipoViagemService>();
 
-
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(IRepositoryBase<>));
             kernel.Bind<IRepositoryCentroCusto>().To<RepositoryCentroCusto>();
             kernel.Bind<IRepositoryClasseViagem>().To<RepositoryClasseViagem>();
             kernel.Bind<IRepositoryDespesaAcomodacao>().To<RepositoryDespesaAcomodacao>();
             kernel.Bind<IRepositoryDespesaCarroAluguel>().To<RepositoryDespesaCarroAluguel>();
-            kernel.Bind<IDespesaCarroService>().To<DespesaCarroService>();
-            kernel.Bind<IDespesaOutroService>().To<DespesaOutroService>();
-            kernel.Bind<IDespesaPerDiemService>().To<DespesaPerDiemService>();
-            kernel.Bind<IDespesaPrincipalService>().To<DespesaPrincipalService>();
-            kernel.Bind<IDespesaTransporteService>().To<DespesaTransporteService>();
-            kernel.Bind<IDespesaViagemService>().To<DespesaViagemService>();
-            kernel.Bind<IMoedaService>().To<MoedaService>();
-            kernel.Bind<IPaisService>().To<PaisService>();
-            kernel.Bind<IRespostaSolicitacaoService>().To<RespostaSolicitacaoService>();
-            kernel.Bind<ISolicitacaoReembolsoService>().To<SolicitacaoReembolsoService>();
-            kernel.Bind<ISolicitacaoViagemService>().To<SolicitacaoViagemService>();
-            kernel.Bind<ITaxaCambioService>().To<TaxaCambioService>();
-            kernel.Bind<ITipoAcomodacaoService>().To<TipoAcomodacaoService>();
-            kernel.Bind<ITipoDespesaCarroService>().To<TipoDespesaCarroService>();
-            kernel.Bind<ITipoViagemService>().To<TipoViagemService>();
+            kernel.Bind<IRepositoryDespesaCarro>().To<RepositoryDespesaCarro>();
+            kernel.Bind<IRepositoryDespesaOutro>().To<RepositoryDespesaOutro>();
+            kernel.Bind<IRepositoryDespesaPerDiem>().To<RepositoryDespesaPerDiem>();
+            kernel.Bind<IRepositoryDespesaPrincipal>().To<RepositoryDespesaPrincipal>();
+            kernel.Bind<IRepositoryDespesaTransporte>().To<RepositoryDespesaTransporte>();
+            kernel.Bind<IRepositoryDespesaViagem>().To<RepositoryDespesaViagem>();
+            kernel.Bind<IRepositoryMoeda>().To<RepositoryMoeda>();
+            kernel.Bind<IRepositoryPais>().To<RepositoryPais>();
+            kernel.Bind<IRepositoryRespostaSolicitacao>().To<RepositoryRespostaSolicitacao>();
+            kernel.Bind<IRepositorySolicitacaoReembolso>().To<RepositorySolicitacaoReembolso>();
+            kernel.Bind<IRepositorySolicitacaoViagem>().To<RepositorySolicitacaoViagem>();
+            kernel.Bind<IRepositoryTaxaCambio>().To<RepositoryTaxaCambio>();
+            kernel.Bind<IRepositoryTipoAcomodacao>().To<RepositoryTipoAcomodacao>();
+            kernel.Bind<IRepositoryTipoDespesaCarro>().To<RepositoryTipoDespesaCarro>();
+            kernel.Bind<IRepositoryTipoViagem>().To<RepositoryTipoViagem>();
         }        
     }
 }

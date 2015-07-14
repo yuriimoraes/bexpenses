@@ -7,17 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class PaisController : Controller
     {
-        private readonly RepositoryPais _PaisRepository = new RepositoryPais();
+        private readonly IPaisAppService _paisApp;
+
+        public PaisController(IPaisAppService paisApp)
+        {
+            _paisApp = paisApp;
+        }
+
+
         //
         // GET: /Pais/
         public ActionResult Index()
         {
-            var paisViewModel = Mapper.Map<IEnumerable<Pais>, IEnumerable<PaisViewModel>>(_PaisRepository.GetAll());
+            var paisViewModel = Mapper.Map<IEnumerable<Pais>, IEnumerable<PaisViewModel>>(_paisApp.GetAll());
             return View(paisViewModel);
         }
 
@@ -25,7 +33,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /Pais/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pais = _paisApp.GetById(id);
+            var paisViewModel = Mapper.Map<Pais, PaisViewModel>(pais);
+            return View(paisViewModel);
         }
 
         //
@@ -38,66 +48,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /Pais/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(PaisViewModel pais)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var paisDomain = Mapper.Map<PaisViewModel, Pais>(pais);
+                _paisApp.Add(paisDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(pais);
         }
 
         //
         // GET: /Pais/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var pais = _paisApp.GetById(id);
+            var paisViewModel = Mapper.Map<Pais, PaisViewModel>(pais);
+            return View(paisViewModel);
         }
 
         //
         // POST: /Pais/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PaisViewModel pais)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var paisDomain = Mapper.Map<PaisViewModel, Pais>(pais);
+                _paisApp.Update(paisDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(pais);
         }
 
         //
         // GET: /Pais/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var pais = _paisApp.GetById(id);
+            var paisViewModel = Mapper.Map<Pais, PaisViewModel>(pais);
+
+            return View(paisViewModel);
         }
 
         //
         // POST: /Pais/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var pais = _paisApp.GetById(id);
+            _paisApp.Remove(pais);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

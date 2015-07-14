@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class ClasseViagemController : Controller
     {
-        private readonly RepositoryClasseViagem _classeViagemRepository = new RepositoryClasseViagem();
+        private readonly IClasseViagemAppService _classeViagemApp;
+
+        public ClasseViagemController(IClasseViagemAppService classeViagemApp)
+        {
+            _classeViagemApp = classeViagemApp;
+        }
+
         //
         // GET: /ClasseViagem/
         public ActionResult Index()
         {
-            var classeViagemViewModel = Mapper.Map<IEnumerable<ClasseViagem>, IEnumerable<ClasseViagemViewModel>>(_classeViagemRepository.GetAll());
+            var classeViagemViewModel = Mapper.Map<IEnumerable<ClasseViagem>, IEnumerable<ClasseViagemViewModel>>(_classeViagemApp.GetAll());
             return View(classeViagemViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /ClasseViagem/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var classeViagem = _classeViagemApp.GetById(id);
+            var classeViagemViewModel = Mapper.Map<ClasseViagem, ClasseViagemViewModel>(classeViagem);
+            return View(classeViagemViewModel);
         }
 
         //
@@ -38,66 +47,62 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /ClasseViagem/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ClasseViagemViewModel classeViagem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var classeViagemDomain = Mapper.Map<ClasseViagemViewModel, ClasseViagem>(classeViagem);
+                _classeViagemApp.Add(classeViagemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(classeViagem);
         }
 
         //
         // GET: /ClasseViagem/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var classeViagem = _classeViagemApp.GetById(id);
+            var classeViagemViewModel = Mapper.Map<ClasseViagem, ClasseViagemViewModel>(classeViagem);
+            return View(classeViagemViewModel);
         }
 
         //
         // POST: /ClasseViagem/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ClasseViagemViewModel classeViagem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var classeViagemDomain = Mapper.Map<ClasseViagemViewModel, ClasseViagem>(classeViagem);
+                _classeViagemApp.Update(classeViagemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(classeViagem);
         }
 
         //
         // GET: /ClasseViagem/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var classeViagem = _classeViagemApp.GetById(id);
+            var classeViagemViewModel = Mapper.Map<ClasseViagem, ClasseViagemViewModel>(classeViagem);
+
+            return View(classeViagemViewModel);
         }
 
         //
         // POST: /ClasseViagem/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var classeViagem = _classeViagemApp.GetById(id);
+            _classeViagemApp.Remove(classeViagem);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }
