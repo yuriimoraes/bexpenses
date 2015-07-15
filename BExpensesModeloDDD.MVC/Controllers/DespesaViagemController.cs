@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class DespesaViagemController : Controller
     {
-        private readonly RepositoryDespesaViagem _despesaViagemRepository = new RepositoryDespesaViagem();
+        private readonly IDespesaViagemAppService _despesaViagemApp;
+
+        public DespesaViagemController(IDespesaViagemAppService despesaViagemApp)
+        {
+            _despesaViagemApp = despesaViagemApp;
+        }
+
         //
         // GET: /DespesaViagem/
         public ActionResult Index()
         {
-            var despesaViagemViewModel = Mapper.Map<IEnumerable<DespesaViagem>, IEnumerable<DespesaViagemViewModel>>(_despesaViagemRepository.GetAll());
+            var despesaViagemViewModel = Mapper.Map<IEnumerable<DespesaViagem>, IEnumerable<DespesaViagemViewModel>>(_despesaViagemApp.GetAll());
             return View(despesaViagemViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaViagem/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var despesaViagem = _despesaViagemApp.GetById(id);
+            var despesaViagemViewModel = Mapper.Map<DespesaViagem, DespesaViagemViewModel>(despesaViagem);
+            return View(despesaViagemViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaViagem/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DespesaViagemViewModel despesaViagem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var despesaViagemDomain = Mapper.Map<DespesaViagemViewModel, DespesaViagem>(despesaViagem);
+                _despesaViagemApp.Add(despesaViagemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(despesaViagem);
         }
 
         //
         // GET: /DespesaViagem/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var despesaViagem = _despesaViagemApp.GetById(id);
+            var despesaViagemViewModel = Mapper.Map<DespesaViagem, DespesaViagemViewModel>(despesaViagem);
+            return View(despesaViagemViewModel);
         }
 
         //
         // POST: /DespesaViagem/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DespesaViagemViewModel despesaViagem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var despesaViagemDomain = Mapper.Map<DespesaViagemViewModel, DespesaViagem>(despesaViagem);
+                _despesaViagemApp.Update(despesaViagemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(despesaViagem);
         }
 
         //
         // GET: /DespesaViagem/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var despesaViagem = _despesaViagemApp.GetById(id);
+            var despesaViagemViewModel = Mapper.Map<DespesaViagem, DespesaViagemViewModel>(despesaViagem);
+
+            return View(despesaViagemViewModel);
         }
 
         //
         // POST: /DespesaViagem/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var despesaViagem = _despesaViagemApp.GetById(id);
+            _despesaViagemApp.Remove(despesaViagem);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

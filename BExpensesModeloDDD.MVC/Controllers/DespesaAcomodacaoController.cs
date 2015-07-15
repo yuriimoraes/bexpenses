@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class DespesaAcomodacaoController : Controller
     {
-        private readonly RepositoryDespesaAcomodacao _despesaAcomodacaoRepository = new RepositoryDespesaAcomodacao();
+        private readonly IDespesaAcomodacaoAppService _despesaAcomodacaoApp;
+
+        public DespesaAcomodacaoController(IDespesaAcomodacaoAppService despesaAcomodacaoApp)
+        {
+            _despesaAcomodacaoApp = despesaAcomodacaoApp;
+        }
+
         //
         // GET: /DespesaAcomodacao/
         public ActionResult Index()
         {
-            var despesaAcomodacaoViewModel = Mapper.Map<IEnumerable<DespesaAcomodacao>, IEnumerable<DespesaAcomodacaoViewModel>>(_despesaAcomodacaoRepository.GetAll());
+            var despesaAcomodacaoViewModel = Mapper.Map<IEnumerable<DespesaAcomodacao>, IEnumerable<DespesaAcomodacaoViewModel>>(_despesaAcomodacaoApp.GetAll());
             return View(despesaAcomodacaoViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaAcomodacao/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var despesaAcomodacao = _despesaAcomodacaoApp.GetById(id);
+            var despesaAcomodacaoViewModel = Mapper.Map<DespesaAcomodacao, DespesaAcomodacaoViewModel>(despesaAcomodacao);
+            return View(despesaAcomodacaoViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaAcomodacao/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DespesaAcomodacaoViewModel despesaAcomodacao)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var despesaAcomodacaoDomain = Mapper.Map<DespesaAcomodacaoViewModel, DespesaAcomodacao>(despesaAcomodacao);
+                _despesaAcomodacaoApp.Add(despesaAcomodacaoDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(despesaAcomodacao);
         }
 
         //
         // GET: /DespesaAcomodacao/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var despesaAcomodacao = _despesaAcomodacaoApp.GetById(id);
+            var despesaAcomodacaoViewModel = Mapper.Map<DespesaAcomodacao, DespesaAcomodacaoViewModel>(despesaAcomodacao);
+            return View(despesaAcomodacaoViewModel);
         }
 
         //
         // POST: /DespesaAcomodacao/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DespesaAcomodacaoViewModel despesaAcomodacao)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var despesaAcomodacaoDomain = Mapper.Map<DespesaAcomodacaoViewModel, DespesaAcomodacao>(despesaAcomodacao);
+                _despesaAcomodacaoApp.Update(despesaAcomodacaoDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(despesaAcomodacao);
         }
 
         //
         // GET: /DespesaAcomodacao/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var despesaAcomodacao = _despesaAcomodacaoApp.GetById(id);
+            var despesaAcomodacaoViewModel = Mapper.Map<DespesaAcomodacao, DespesaAcomodacaoViewModel>(despesaAcomodacao);
+
+            return View(despesaAcomodacaoViewModel);
         }
 
         //
         // POST: /DespesaAcomodacao/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var despesaAcomodacao = _despesaAcomodacaoApp.GetById(id);
+            _despesaAcomodacaoApp.Remove(despesaAcomodacao);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

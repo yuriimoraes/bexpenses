@@ -7,18 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class PessoaController : Controller
     {
-        private readonly RepositoryPessoa _pessoaRepository = new RepositoryPessoa();
-        
+        private readonly IPessoaAppService _pessoaApp;
+
+        public PessoaController(IPessoaAppService pessoaApp)
+        {
+            _pessoaApp = pessoaApp;
+        }
+
         //
         // GET: /Pessoa/
         public ActionResult Index()
         {
-            var pessoaViewModel = Mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaViewModel>>(_pessoaRepository.GetAll());
+            var pessoaViewModel = Mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaViewModel>>(_pessoaApp.GetAll());
             return View(pessoaViewModel);
         }
 
@@ -26,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /Pessoa/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pessoa = _pessoaApp.GetById(id);
+            var pessoaViewModel = Mapper.Map<Pessoa, PessoaViewModel>(pessoa);
+            return View(pessoaViewModel);
         }
 
         //
@@ -39,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /Pessoa/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(PessoaViewModel pessoa)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var pessoaDomain = Mapper.Map<PessoaViewModel, Pessoa>(pessoa);
+                _pessoaApp.Add(pessoaDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(pessoa);
         }
 
         //
         // GET: /Pessoa/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var pessoa = _pessoaApp.GetById(id);
+            var pessoaViewModel = Mapper.Map<Pessoa, CentroCustoViewModel>(pessoa);
+            return View(pessoaViewModel);
         }
 
         //
         // POST: /Pessoa/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PessoaViewModel pessoa)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var pessoaDomain = Mapper.Map<PessoaViewModel, Pessoa>(pessoa);
+                _pessoaApp.Update(pessoaDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(pessoa);
         }
 
         //
         // GET: /Pessoa/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var pessoa = _pessoaApp.GetById(id);
+            var pessoaViewModel = Mapper.Map<Pessoa, PessoaViewModel>(pessoa);
+
+            return View(pessoaViewModel);
         }
 
         //
         // POST: /Pessoa/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var pessoa = _pessoaApp.GetById(id);
+            _pessoaApp.Remove(pessoa);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

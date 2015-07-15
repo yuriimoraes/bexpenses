@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class RespostaSolicitacaoController : Controller
     {
-        private readonly RepositoryRespostaSolicitacao _respostaSolicitacaoRepository = new RepositoryRespostaSolicitacao();
+        private readonly IRespostaSolicitacaoAppService _respostaSolicitacaoApp;
+
+        public RespostaSolicitacaoController(IRespostaSolicitacaoAppService respostaSolicitacaoApp)
+        {
+            _respostaSolicitacaoApp = respostaSolicitacaoApp;
+        }
+
         //
         // GET: /RespostaSolicitacao/
         public ActionResult Index()
         {
-            var respostaSolicitacaoViewModel = Mapper.Map<IEnumerable<RespostaSolicitacao>, IEnumerable<RespostaSolicitacaoViewModel>>(_respostaSolicitacaoRepository.GetAll());
+            var respostaSolicitacaoViewModel = Mapper.Map<IEnumerable<RespostaSolicitacao>, IEnumerable<RespostaSolicitacaoViewModel>>(_respostaSolicitacaoApp.GetAll());
             return View(respostaSolicitacaoViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /RespostaSolicitacao/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
+            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacao, RespostaSolicitacaoViewModel>(respostaSolicitacao);
+            return View(respostaSolicitacaoViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /RespostaSolicitacao/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(RespostaSolicitacaoViewModel respostaSolicitacao)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var respostaSolicitacaoDomain = Mapper.Map<RespostaSolicitacaoViewModel, RespostaSolicitacao>(respostaSolicitacao);
+                _respostaSolicitacaoApp.Add(respostaSolicitacaoDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(respostaSolicitacao);
         }
 
         //
         // GET: /RespostaSolicitacao/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
+            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacao, RespostaSolicitacaoViewModel>(respostaSolicitacao);
+            return View(respostaSolicitacaoViewModel);
         }
 
         //
         // POST: /RespostaSolicitacao/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(RespostaSolicitacaoViewModel respostaSolicitacao)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var respostaSolicitacaoDomain = Mapper.Map<RespostaSolicitacaoViewModel, RespostaSolicitacao>(respostaSolicitacao);
+                _respostaSolicitacaoApp.Update(respostaSolicitacaoDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(respostaSolicitacao);
         }
 
         //
         // GET: /RespostaSolicitacao/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
+            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacao, RespostaSolicitacaoViewModel>(respostaSolicitacao);
+
+            return View(respostaSolicitacaoViewModel);
         }
 
         //
         // POST: /RespostaSolicitacao/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
+            _respostaSolicitacaoApp.Remove(respostaSolicitacao);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

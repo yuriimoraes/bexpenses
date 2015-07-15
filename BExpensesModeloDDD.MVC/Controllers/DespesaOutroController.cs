@@ -7,18 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Domain.Interfaces.Services;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class DespesaOutroController : Controller
     {
-        private readonly RepositoryDespesaOutro _despesaOutroRepository = new RepositoryDespesaOutro();
-        
+        private readonly IDespesaOutroService _despesaOutroApp;
+
+        public DespesaOutroController(IDespesaOutroService despesaOutroApp)
+        {
+            _despesaOutroApp = despesaOutroApp;
+        }
+
         //
         // GET: /DespesaOutro/
         public ActionResult Index()
         {
-            var despesaOutroViewModel = Mapper.Map<IEnumerable<DespesaOutro>, IEnumerable<DespesaOutroViewModel>>(_despesaOutroRepository.GetAll());
+            var despesaOutroViewModel = Mapper.Map<IEnumerable<DespesaOutro>, IEnumerable<DespesaOutroViewModel>>(_despesaOutroApp.GetAll());
             return View(despesaOutroViewModel);
         }
 
@@ -26,7 +32,10 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaOutro/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            var despesaOutro = _despesaOutroApp.GetByID(id);
+            var despesaOutroViewModel = Mapper.Map<DespesaOutro, DespesaOutroViewModel>(despesaOutro);
+            return View(despesaOutroViewModel);
         }
 
         //
@@ -39,66 +48,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaOutro/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DespesaOutroViewModel despesaOutro)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var despesaOutroDomain = Mapper.Map<DespesaOutroViewModel, DespesaOutro>(despesaOutro);
+                _despesaOutroApp.Add(despesaOutroDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(despesaOutro);
         }
 
         //
         // GET: /DespesaOutro/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var despesaOutro = _despesaOutroApp.GetByID(id);
+            var despesaOutroViewModel = Mapper.Map<DespesaOutro, DespesaOutroViewModel>(despesaOutro);
+            return View(despesaOutroViewModel);
         }
 
         //
         // POST: /DespesaOutro/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DespesaOutroViewModel despesaOutro)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var despesaOutroDomain = Mapper.Map<DespesaOutroViewModel, DespesaOutro>(despesaOutro);
+                _despesaOutroApp.Update(despesaOutroDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(despesaOutro);
         }
 
         //
         // GET: /DespesaOutro/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var despesaOutro = _despesaOutroApp.GetByID(id);
+            var despesaOutroViewModel = Mapper.Map<DespesaOutro, DespesaOutroViewModel>(despesaOutro);
+
+            return View(despesaOutroViewModel);
         }
 
         //
         // POST: /DespesaOutro/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var despesaOutro = _despesaOutroApp.GetByID(id);
+            _despesaOutroApp.Remove(despesaOutro);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

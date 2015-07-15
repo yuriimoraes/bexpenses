@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class DespesaPerDiemController : Controller
     {
-        private readonly RepositoryDespesaPerDiem _despesaPerDiemRepository = new RepositoryDespesaPerDiem();
+        private readonly IDespesaPerDiemAppService _despesaPerDiemApp;
+
+        public DespesaPerDiemController(IDespesaPerDiemAppService despesaPerDiemApp)
+        {
+            _despesaPerDiemApp = despesaPerDiemApp;
+        }
+
         //
         // GET: /DespesaPerDiem/
         public ActionResult Index()
         {
-            var despesaPerDiemViewModel = Mapper.Map<IEnumerable<DespesaPerDiem>, IEnumerable<DespesaPerDiemViewModel>>(_despesaPerDiemRepository.GetAll());
+            var despesaPerDiemViewModel = Mapper.Map<IEnumerable<DespesaPerDiem>, IEnumerable<DespesaPerDiemViewModel>>(_despesaPerDiemApp.GetAll());
             return View(despesaPerDiemViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaPerDiem/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var despesaPerDiem = _despesaPerDiemApp.GetById(id);
+            var despesaPerDiemViewModel = Mapper.Map<DespesaPerDiem, DespesaPerDiemViewModel>(despesaPerDiem);
+            return View(despesaPerDiemViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaPerDiem/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DespesaPerDiemViewModel despesaPerDiem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var despesaPerDiemDomain = Mapper.Map<DespesaPerDiemViewModel, DespesaPerDiem>(despesaPerDiem);
+                _despesaPerDiemApp.Add(despesaPerDiemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(despesaPerDiem);
         }
 
         //
         // GET: /DespesaPerDiem/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var despesaPerDiem = _despesaPerDiemApp.GetById(id);
+            var despesaPerDiemViewModel = Mapper.Map<DespesaPerDiem, DespesaPerDiemViewModel>(despesaPerDiem);
+            return View(despesaPerDiemViewModel);
         }
 
         //
         // POST: /DespesaPerDiem/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DespesaPerDiemViewModel despesaPerDiem)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var despesaPerDiemDomain = Mapper.Map<DespesaPerDiemViewModel, DespesaPerDiem>(despesaPerDiem);
+                _despesaPerDiemApp.Update(despesaPerDiemDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(despesaPerDiem);
         }
 
         //
         // GET: /DespesaPerDiem/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var despesaPerDiem = _despesaPerDiemApp.GetById(id);
+            var despesaPerDiemViewModel = Mapper.Map<DespesaPerDiem, DespesaPerDiemViewModel>(despesaPerDiem);
+
+            return View(despesaPerDiemViewModel);
         }
 
         //
         // POST: /DespesaPerDiem/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var centroCusto = _despesaPerDiemApp.GetById(id);
+            _despesaPerDiemApp.Remove(centroCusto);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

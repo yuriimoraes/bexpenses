@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class DespesaTransporteController : Controller
     {
-        private readonly RepositoryDespesaTransporte _despesaTransporteRepository = new RepositoryDespesaTransporte();
+        private readonly IDespesaTransporteAppService _despesaTransporteApp;
+
+        public DespesaTransporteController(IDespesaTransporteAppService despesaTransporteApp)
+        {
+            _despesaTransporteApp = despesaTransporteApp;
+        }
+
         //
         // GET: /DespesaTransporte/
         public ActionResult Index()
         {
-            var despesaTransporteViewModel = Mapper.Map<IEnumerable<DespesaTransporte>, IEnumerable<DespesaTransporteViewModel>>(_despesaTransporteRepository.GetAll());
+            var despesaTransporteViewModel = Mapper.Map<IEnumerable<DespesaTransporte>, IEnumerable<DespesaTransporteViewModel>>(_despesaTransporteApp.GetAll());
             return View(despesaTransporteViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaTransporte/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var despesaTransporte = _despesaTransporteApp.GetById(id);
+            var despesaTransporteViewModel = Mapper.Map<DespesaTransporte, DespesaTransporteViewModel>(despesaTransporte);
+            return View(despesaTransporteViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaTransporte/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DespesaTransporteViewModel despesaTransporte)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var despesaTransporteDomain = Mapper.Map<DespesaTransporteViewModel, DespesaTransporte>(despesaTransporte);
+                _despesaTransporteApp.Add(despesaTransporteDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(despesaTransporte);
         }
 
         //
         // GET: /DespesaTransporte/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var despesaTransporte = _despesaTransporteApp.GetById(id);
+            var despesaTransporteViewModel = Mapper.Map<DespesaTransporte, DespesaTransporteViewModel>(despesaTransporte);
+            return View(despesaTransporteViewModel);
         }
 
         //
         // POST: /DespesaTransporte/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DespesaTransporteViewModel despesaTransporte)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var despesaTransporteDomain = Mapper.Map<DespesaTransporteViewModel, DespesaTransporte>(despesaTransporte);
+                _despesaTransporteApp.Update(despesaTransporteDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(despesaTransporte);
         }
 
         //
         // GET: /DespesaTransporte/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var despesaTransporte = _despesaTransporteApp.GetById(id);
+            var despesaTransporteViewModel = Mapper.Map<DespesaTransporte, DespesaTransporteViewModel>(despesaTransporte);
+
+            return View(despesaTransporteViewModel);
         }
 
         //
         // POST: /DespesaTransporte/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var despesaTransporte = _despesaTransporteApp.GetById(id);
+            _despesaTransporteApp.Remove(despesaTransporte);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

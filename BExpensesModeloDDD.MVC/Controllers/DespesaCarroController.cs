@@ -7,18 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class DespesaCarroController : Controller
     {
-        private readonly RepositoryDespesaCarro _despesaCarroRepository = new RepositoryDespesaCarro();
-        
+        private readonly IDespesaCarroAppService _despesaCarroApp;
+
+        public DespesaCarroController(IDespesaCarroAppService despesaCarroApp)
+        {
+            _despesaCarroApp = despesaCarroApp;
+        }
+
         //
         // GET: /DespesaCarro/
         public ActionResult Index()
         {
-            var despesaCarroViewModel = Mapper.Map<IEnumerable<DespesaCarro>, IEnumerable<DespesaCarroViewModel>>(_despesaCarroRepository.GetAll());
+            var despesaCarroViewModel = Mapper.Map<IEnumerable<DespesaCarro>, IEnumerable<DespesaCarroViewModel>>(_despesaCarroApp.GetAll());
             return View(despesaCarroViewModel);
         }
 
@@ -26,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaCarro/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var despesaCarro = _despesaCarroApp.GetById(id);
+            var despesaCarroViewModel = Mapper.Map<DespesaCarro, DespesaCarroViewModel>(despesaCarro);
+            return View(despesaCarroViewModel);
         }
 
         //
@@ -39,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaCarro/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DespesaCarroViewModel despesaCarro)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var despesaCarroDomain = Mapper.Map<DespesaCarroViewModel, DespesaCarro>(despesaCarro);
+                _despesaCarroApp.Add(despesaCarroDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(despesaCarro);
         }
 
         //
         // GET: /DespesaCarro/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var despesaCarro = _despesaCarroApp.GetById(id);
+            var despesaCarroViewModel = Mapper.Map<DespesaCarro, DespesaCarroViewModel>(despesaCarro);
+            return View(despesaCarroViewModel);
         }
 
         //
         // POST: /DespesaCarro/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DespesaCarroViewModel despesaCarro)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var despesaCarroDomain = Mapper.Map<DespesaCarroViewModel, DespesaCarro>(despesaCarro);
+                _despesaCarroApp.Update(despesaCarroDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(despesaCarro);
         }
 
         //
         // GET: /DespesaCarro/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var despesaCarro = _despesaCarroApp.GetById(id);
+            var despesaCarroViewModel = Mapper.Map<DespesaCarro, DespesaCarroViewModel>(despesaCarro);
+
+            return View(despesaCarroViewModel);
         }
 
         //
         // POST: /DespesaCarro/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var despesaCarro = _despesaCarroApp.GetById(id);
+            _despesaCarroApp.Remove(despesaCarro);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

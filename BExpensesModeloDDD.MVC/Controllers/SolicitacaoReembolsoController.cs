@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
     public class SolicitacaoReembolsoController : Controller
     {
-        private readonly RepositorySolicitacaoReembolso _solicitacaoReembolsoRepository = new RepositorySolicitacaoReembolso();
+        private readonly ISolicitacaoReembolsoAppService _solicitacaoReembolsoApp;
+
+        public SolicitacaoReembolsoController(ISolicitacaoReembolsoAppService solicitacaoReembolsoApp)
+        {
+            _solicitacaoReembolsoApp = solicitacaoReembolsoApp;
+        }
+
         //
         // GET: /SolicitacaoReembolso/
         public ActionResult Index()
         {
-            var solicitacaoReembolsoViewModel = Mapper.Map<IEnumerable<SolicitacaoReembolso>, IEnumerable<SolicitacaoReembolsoViewModel>>(_solicitacaoReembolsoRepository.GetAll());
+            var solicitacaoReembolsoViewModel = Mapper.Map<IEnumerable<SolicitacaoReembolso>, IEnumerable<SolicitacaoReembolsoViewModel>>(_solicitacaoReembolsoApp.GetAll());
             return View(solicitacaoReembolsoViewModel);
         }
 
@@ -25,7 +32,9 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /SolicitacaoReembolso/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var solicitacaoReembolso = _solicitacaoReembolsoApp.GetById(id);
+            var solicitacaoReembolsoViewModel = Mapper.Map<SolicitacaoReembolso, SolicitacaoReembolsoViewModel>(solicitacaoReembolso);
+            return View(solicitacaoReembolsoViewModel);
         }
 
         //
@@ -38,66 +47,64 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /SolicitacaoReembolso/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SolicitacaoReembolsoViewModel solicitacaoReembolso)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                var solicitacaoReembolsoDomain = Mapper.Map<SolicitacaoReembolsoViewModel, SolicitacaoReembolso>(solicitacaoReembolso);
+                _solicitacaoReembolsoApp.Add(solicitacaoReembolsoDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(solicitacaoReembolso);
         }
 
         //
         // GET: /SolicitacaoReembolso/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var solicitacaoReembolso = _solicitacaoReembolsoApp.GetById(id);
+            var solicitacaoReembolsoViewModel = Mapper.Map<SolicitacaoReembolso, SolicitacaoReembolsoViewModel>(solicitacaoReembolso);
+            return View(solicitacaoReembolsoViewModel);
         }
 
         //
         // POST: /SolicitacaoReembolso/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(SolicitacaoReembolsoViewModel solicitacaoReembolso)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                var solicitacaoReembolsoDomain = Mapper.Map<SolicitacaoReembolsoViewModel, SolicitacaoReembolso>(solicitacaoReembolso);
+                _solicitacaoReembolsoApp.Update(solicitacaoReembolsoDomain);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(solicitacaoReembolso);
         }
 
         //
         // GET: /SolicitacaoReembolso/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var solicitacaoReembolso = _solicitacaoReembolsoApp.GetById(id);
+            var solicitacaoReembolsoViewModel = Mapper.Map<SolicitacaoReembolso, SolicitacaoReembolsoViewModel>(solicitacaoReembolso);
+
+            return View(solicitacaoReembolsoViewModel);
         }
 
         //
         // POST: /SolicitacaoReembolso/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var centroCusto = _solicitacaoReembolsoApp.GetById(id);
+            _solicitacaoReembolsoApp.Remove(centroCusto);
+
+            return RedirectToAction("Index");
+
         }
     }
 }
