@@ -52,7 +52,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var parametrosSistemaDomain = Mapper.Map<ParametrosSistemaViewModel, ParametrosSistema>(centrocusto);
+                var parametrosSistemaDomain = Mapper.Map<ParametrosSistemaViewModel, ParametrosSistema>(parametrosSistema);
                 _parametrosSistemaApp.Add(parametrosSistemaDomain);
                 return RedirectToAction("Index");
             }

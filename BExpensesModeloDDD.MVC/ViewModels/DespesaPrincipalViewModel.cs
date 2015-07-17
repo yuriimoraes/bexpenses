@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 namespace BExpensesModeloDDD.MVC.ViewModels
 {
@@ -16,8 +17,12 @@ namespace BExpensesModeloDDD.MVC.ViewModels
 
         [DataType(DataType.Currency)]
         [Range(typeof(decimal), "0", "9999999999999")]
+        [DisplayName("Valor")]
         public double ValorTotal { get; set; }
+        [Editable(false, AllowInitialValue = false)]
+        [DisplayName("Data Atualização")]
         public DateTime DataAtualizacao { get; set; }
+        [DisplayName("Observação")]
         public string Observacao { get; set; }
 
         public virtual IEnumerable<DespesaAcomodacaoViewModel> DespesasAcomodacoes { get; set; }

@@ -13,7 +13,6 @@ namespace BExpensesModeloDDD.MVC.Controllers
     public class CentroCustoController : Controller
     {
         private readonly ICentroCustoAppService _centroCustoApp;
-
         public CentroCustoController(ICentroCustoAppService centroCustoApp)
         {
             _centroCustoApp = centroCustoApp;

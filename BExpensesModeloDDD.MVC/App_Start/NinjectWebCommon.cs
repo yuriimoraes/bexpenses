@@ -106,6 +106,8 @@ namespace BExpensesModeloDDD.MVC.App_Start
             kernel.Bind<IDespesaViagemService>().To<DespesaViagemService>();
             kernel.Bind<IMoedaService>().To<MoedaService>();
             kernel.Bind<IPaisService>().To<PaisService>();
+            kernel.Bind<IPessoaService>().To<PessoaService>();
+            kernel.Bind<IParametrosSistemaService>().To<ParametrosSistemaService>();
             kernel.Bind<IRespostaSolicitacaoService>().To<RespostaSolicitacaoService>();
             kernel.Bind<ISolicitacaoReembolsoService>().To<SolicitacaoReembolsoService>();
             kernel.Bind<ISolicitacaoViagemService>().To<SolicitacaoViagemService>();
@@ -127,6 +129,8 @@ namespace BExpensesModeloDDD.MVC.App_Start
             kernel.Bind<IRepositoryDespesaViagem>().To<RepositoryDespesaViagem>();
             kernel.Bind<IRepositoryMoeda>().To<RepositoryMoeda>();
             kernel.Bind<IRepositoryPais>().To<RepositoryPais>();
+            kernel.Bind<IRepositoryPessoa>().To<RepositoryPessoa>();
+            kernel.Bind<IRepositoryParametrosSistema>().To<RepositoryParametrosSistema>();
             kernel.Bind<IRepositoryRespostaSolicitacao>().To<RepositoryRespostaSolicitacao>();
             kernel.Bind<IRepositorySolicitacaoReembolso>().To<RepositorySolicitacaoReembolso>();
             kernel.Bind<IRepositorySolicitacaoViagem>().To<RepositorySolicitacaoViagem>();

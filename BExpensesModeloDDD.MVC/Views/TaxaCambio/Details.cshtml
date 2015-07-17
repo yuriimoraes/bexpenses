@@ -1,0 +1,82 @@
+﻿@model BExpensesModeloDDD.MVC.ViewModels.TaxaCambioViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaxaCambioViewModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DespesaPrincipalID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DespesaPrincipalID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatorDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatorDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoedaDeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoedaDeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cotPreco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cotPreco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatorPara)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatorPara)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoedaParaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoedaParaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInicial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFinal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TaxaCambioID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,122 @@
+﻿@model BExpensesModeloDDD.MVC.ViewModels.SolicitacaoViagemViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SolicitacaoViagemViewModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PessoaRecebeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PessoaRecebeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PessoaSolicitanteID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PessoaSolicitanteID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RespostaSolicitacaoID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RespostaSolicitacaoID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescricaoViagem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescricaoViagem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adiantamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adiantamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorAdiantamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorAdiantamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaisOrigemID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaisOrigemID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CidadeOrigem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CidadeOrigem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaisDestinoID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaisDestinoID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CidadeDestino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CidadeDestino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataViagemIncial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataViagemIncial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataViagemFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataViagemFinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SolicitacaoViagemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

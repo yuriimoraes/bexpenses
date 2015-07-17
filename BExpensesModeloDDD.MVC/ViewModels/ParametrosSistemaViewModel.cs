@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,13 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [Range(typeof(decimal), "0", "9999999999999")]
         [Required(ErrorMessage = "Preencha o valor")]
         public double Valor { get; set; }
+        [Required(ErrorMessage = "Preencha a Data Inicial")]
+        [DisplayName("Data Inicial")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInicial { get; set; }
+        [Required(ErrorMessage = "Preencha a Data Final")]
+        [DisplayName("Data Final")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataFinal { get; set; }
         
         [ScaffoldColumn(false)]

@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataReembolso, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataReembolso)
+                @Html.DisplayFor(model => model.DataReembolso)
                 @Html.ValidationMessageFor(model => model.DataReembolso)
             </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataSolicitacao, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataSolicitacao)
+                @Html.DisplayFor(model => model.DataSolicitacao)
                 @Html.ValidationMessageFor(model => model.DataSolicitacao)
             </div>
         </div>

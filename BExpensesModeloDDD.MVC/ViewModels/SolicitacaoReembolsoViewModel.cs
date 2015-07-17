@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -14,13 +15,18 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         public virtual DespesaPrincipalViewModel DespesaPrincipal { get; set; }
         public int RespostaSolicitacaoID { get; set; }
         public virtual RespostaSolicitacaoViewModel RespostaSolicitacao { get; set; }
+        [DisplayName("Data Reembolso")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataReembolso { get; set; }
+        [DisplayName("Data Solicitação")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataSolicitacao { get; set; }
         public string Status { get; set; }
 
         [DataType(DataType.Currency)]
         [Range(typeof(decimal), "0", "9999999999999")]
         public double Valor { get; set; }
+        [DisplayName("Observação")]
         public string Observacao { get; set; }
     }
 }

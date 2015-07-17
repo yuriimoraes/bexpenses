@@ -12,27 +12,27 @@ namespace BExpensesModeloDDD.MVC.AutoMapper
         }
         protected override void Configure()
         {
-            Mapper.CreateMap<CentroCustoViewModel, CentroCusto>();
-            Mapper.CreateMap<ClasseViagemViewModel, ClasseViagem>();
-            Mapper.CreateMap<DespesaAcomodacaoViewModel, DespesaAcomodacao>();
-            Mapper.CreateMap<DespesaCarroAluguelViewModel, DespesaCarroAluguel>();
-            Mapper.CreateMap<DespesaCarroViewModel, DespesaCarro>();
-            Mapper.CreateMap<DespesaOutroViewModel, DespesaOutro>();
-            Mapper.CreateMap<DespesaPerDiemViewModel, DespesaPerDiem>();
-            Mapper.CreateMap<DespesaPrincipalViewModel, DespesaPrincipal>();
-            Mapper.CreateMap<DespesaTransporteViewModel, DespesaTransporte>();
-            Mapper.CreateMap<DespesaViagemViewModel, DespesaViagem>();
-            Mapper.CreateMap<MoedaViewModel, Moeda>();
-            Mapper.CreateMap<PaisViewModel, Pais>();
-            Mapper.CreateMap<ParametrosSistemaViewModel, ParametrosSistema>();
-            Mapper.CreateMap<PessoaViewModel, Pessoa>();
-            Mapper.CreateMap<RespostaSolicitacaoViewModel, RespostaSolicitacao>();
-            Mapper.CreateMap<SolicitacaoReembolsoViewModel, SolicitacaoReembolso>();
-            Mapper.CreateMap<SolicitacaoViagemViewModel, SolicitacaoViagem>();
-            Mapper.CreateMap<TaxaCambioViewModel, TaxaCambio>();
-            Mapper.CreateMap<TipoAcomodacaoViewModel, TipoAcomodacao>();
-            Mapper.CreateMap<TipoDespesaCarroViewModel, TipoDespesaCarro>();
-            Mapper.CreateMap<TipoViagemViewModel, TipoViagem>();
+            Mapper.CreateMap<CentroCusto, CentroCustoViewModel>();
+            Mapper.CreateMap<ClasseViagem, ClasseViagemViewModel>();
+            Mapper.CreateMap<DespesaAcomodacao, DespesaAcomodacaoViewModel>();
+            Mapper.CreateMap<DespesaCarroAluguel, DespesaCarroAluguelViewModel>();
+            Mapper.CreateMap<DespesaCarro, DespesaCarroViewModel>();
+            Mapper.CreateMap<DespesaOutro, DespesaOutroViewModel>();
+            Mapper.CreateMap<DespesaPerDiem, DespesaPerDiemViewModel>();
+            Mapper.CreateMap<DespesaPrincipal, DespesaPrincipalViewModel>();
+            Mapper.CreateMap<DespesaTransporte, DespesaTransporteViewModel>();
+            Mapper.CreateMap<DespesaViagem, DespesaViagemViewModel>();
+            Mapper.CreateMap<Moeda, MoedaViewModel>();
+            Mapper.CreateMap<Pais, PaisViewModel>();
+            Mapper.CreateMap<ParametrosSistema, ParametrosSistemaViewModel>();
+            Mapper.CreateMap<Pessoa, PessoaViewModel>();
+            Mapper.CreateMap<RespostaSolicitacao, RespostaSolicitacaoViewModel>();
+            Mapper.CreateMap<SolicitacaoReembolso, SolicitacaoReembolsoViewModel>();
+            Mapper.CreateMap<SolicitacaoViagem, SolicitacaoViagemViewModel>();
+            Mapper.CreateMap<TaxaCambio, TaxaCambioViewModel>();
+            Mapper.CreateMap<TipoAcomodacao, TipoAcomodacaoViewModel>();
+            Mapper.CreateMap<TipoDespesaCarro, TipoDespesaCarroViewModel>();
+            Mapper.CreateMap<TipoViagem, TipoViagemViewModel>();
         }
     }
 }

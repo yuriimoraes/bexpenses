@@ -29,6 +29,8 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Senha")]
+        [DataType(DataType.Password)]
+        [StringLength(10, MinimumLength = 4)]
         [MaxLength(30, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Minimo {0} caracteres")]
         public string Senha { get; set; }

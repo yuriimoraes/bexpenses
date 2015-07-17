@@ -123,7 +123,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Aprovador1ID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Aprovador1ID)
+                @Html.DropDownList("Aprovador1ID", String.Empty)
                 @Html.ValidationMessageFor(model => model.Aprovador1ID)
             </div>
         </div>
@@ -131,7 +131,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Aprovador2ID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Aprovador2ID)
+                @Html.DropDownList("Aprovador2ID", String.Empty)
                 @Html.ValidationMessageFor(model => model.Aprovador2ID)
             </div>
         </div>
@@ -139,7 +139,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CentroCustoID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CentroCustoID)
+                @Html.DropDownList("CentroCustoID",String.Empty)
                 @Html.ValidationMessageFor(model => model.CentroCustoID)
             </div>
         </div>

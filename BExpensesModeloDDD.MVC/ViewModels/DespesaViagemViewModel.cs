@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,7 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [MaxLength(150, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Minimo {0} caracteres")]
         public string Destino { get; set; }
+        [DisplayName("Classe Viagem ID")]
         public int ClasseViagemID { get; set; }
         public virtual ClasseViagemViewModel ClasseViagem { get; set; }
         public string NumeroBilhete { get; set; }
@@ -29,7 +31,9 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DataType(DataType.Currency)]
         [Range(typeof(decimal), "0", "9999999999999")]
         [Required(ErrorMessage = "Preencha o valor")]
+        [DisplayName("Valor")]
         public double ValorBilhete { get; set; }
+        [DisplayName("Observação")]
         public string Observacao { get; set; }
         public string Status { get; set; }
 

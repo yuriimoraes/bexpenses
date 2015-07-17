@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BExpensesModeloDDD.MVC.ViewModels.SolicitacaoReembolsoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DespesaPrincipalID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RespostaSolicitacaoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataReembolso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataSolicitacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DespesaPrincipalID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RespostaSolicitacaoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataReembolso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataSolicitacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SolicitacaoReembolsoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SolicitacaoReembolsoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SolicitacaoReembolsoID })
+        </td>
+    </tr>
+}
+
+</table>

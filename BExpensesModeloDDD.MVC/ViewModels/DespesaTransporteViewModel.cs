@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 namespace BExpensesModeloDDD.MVC.ViewModels
 {
@@ -24,7 +25,9 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DataType(DataType.Currency)]
         [Range(typeof(decimal), "0", "9999999999999")]
         [Required(ErrorMessage = "Preencha o valor")]
+        [DisplayName("Valor")]
         public double ValorTransporte { get; set; }
+        [DisplayName("Observação")]
         public string Observacao { get; set; }
         public string Status { get; set; }
 

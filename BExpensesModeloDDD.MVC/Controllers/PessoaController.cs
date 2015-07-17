@@ -14,11 +14,14 @@ namespace BExpensesModeloDDD.MVC.Controllers
     public class PessoaController : Controller
     {
         private readonly IPessoaAppService _pessoaApp;
+        private readonly ICentroCustoAppService _centroCustoApp;
 
-        public PessoaController(IPessoaAppService pessoaApp)
+        public PessoaController(IPessoaAppService pessoaApp, ICentroCustoAppService centroCustoApp)
         {
             _pessoaApp = pessoaApp;
+            _centroCustoApp = centroCustoApp;
         }
+
 
         //
         // GET: /Pessoa/
@@ -41,6 +44,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /Pessoa/Create
         public ActionResult Create()
         {
+            ViewBag.CentroCustoID = new SelectList(_centroCustoApp.GetAll(), "CentroCustoID", "Descricao");
             return View();
         }
 
@@ -65,7 +69,8 @@ namespace BExpensesModeloDDD.MVC.Controllers
         public ActionResult Edit(int id)
         {
             var pessoa = _pessoaApp.GetById(id);
-            var pessoaViewModel = Mapper.Map<Pessoa, CentroCustoViewModel>(pessoa);
+            var pessoaViewModel = Mapper.Map<Pessoa, PessoaViewModel>(pessoa);
+            ViewBag.CentroCustoID = new SelectList(_centroCustoApp.GetAll(), "CentroCustoID", "Descricao");
             return View(pessoaViewModel);
         }
 

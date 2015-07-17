@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BExpensesModeloDDD.MVC.ViewModels.TaxaCambioViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DespesaPrincipalID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatorDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoedaDeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cotPreco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatorPara)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoedaParaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataInicial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFinal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DespesaPrincipalID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatorDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoedaDeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cotPreco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatorPara)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoedaParaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFinal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TaxaCambioID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TaxaCambioID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TaxaCambioID })
+        </td>
+    </tr>
+}
+
+</table>

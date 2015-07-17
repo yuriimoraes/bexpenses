@@ -14,10 +14,14 @@ namespace BExpensesModeloDDD.MVC.Controllers
     public class DespesaAcomodacaoController : Controller
     {
         private readonly IDespesaAcomodacaoAppService _despesaAcomodacaoApp;
+        private readonly ITipoAcomodacaoAppService _tipoAcomodacaoApp;
+        private readonly IPaisAppService _paisApp;
 
-        public DespesaAcomodacaoController(IDespesaAcomodacaoAppService despesaAcomodacaoApp)
+        public DespesaAcomodacaoController(IDespesaAcomodacaoAppService despesaAcomodacaoApp, ITipoAcomodacaoAppService tipoAcomodacaoApp, IPaisAppService paisApp)
         {
             _despesaAcomodacaoApp = despesaAcomodacaoApp;
+            _tipoAcomodacaoApp = tipoAcomodacaoApp;
+            _paisApp = paisApp;
         }
 
         //
@@ -41,6 +45,8 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /DespesaAcomodacao/Create
         public ActionResult Create()
         {
+            ViewBag.TipoAcomodacaoID = new SelectList(_tipoAcomodacaoApp.GetAll(), "TipoAcomodacaoID", "DescricaoTipoAcomodacao");
+            ViewBag.PaisAcomodacaoID = new SelectList(_paisApp.GetAll(), "PaisAcomodacaoID", "NomePais");
             return View();
         }
 
@@ -66,6 +72,10 @@ namespace BExpensesModeloDDD.MVC.Controllers
         {
             var despesaAcomodacao = _despesaAcomodacaoApp.GetById(id);
             var despesaAcomodacaoViewModel = Mapper.Map<DespesaAcomodacao, DespesaAcomodacaoViewModel>(despesaAcomodacao);
+
+            ViewBag.TipoAcomodacaoID = new SelectList(_tipoAcomodacaoApp.GetAll(), "TipoAcomodacaoID", "DescricaoTipoAcomodacao");
+            ViewBag.PaisAcomodacaoID = new SelectList(_paisApp.GetAll(), "PaisAcomodacaoID", "NomePais");
+             
             return View(despesaAcomodacaoViewModel);
         }
 

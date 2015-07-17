@@ -1,0 +1,137 @@
+﻿@model BExpensesModeloDDD.MVC.ViewModels.SolicitacaoViagemViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SolicitacaoViagemViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PessoaRecebeID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PessoaRecebeID)
+                @Html.ValidationMessageFor(model => model.PessoaRecebeID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PessoaSolicitanteID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PessoaSolicitanteID)
+                @Html.ValidationMessageFor(model => model.PessoaSolicitanteID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RespostaSolicitacaoID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RespostaSolicitacaoID)
+                @Html.ValidationMessageFor(model => model.RespostaSolicitacaoID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescricaoViagem, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DescricaoViagem)
+                @Html.ValidationMessageFor(model => model.DescricaoViagem)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adiantamento, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Adiantamento)
+                @Html.ValidationMessageFor(model => model.Adiantamento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ValorAdiantamento, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ValorAdiantamento)
+                @Html.ValidationMessageFor(model => model.ValorAdiantamento)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaisOrigemID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaisOrigemID)
+                @Html.ValidationMessageFor(model => model.PaisOrigemID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CidadeOrigem, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CidadeOrigem)
+                @Html.ValidationMessageFor(model => model.CidadeOrigem)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaisDestinoID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaisDestinoID)
+                @Html.ValidationMessageFor(model => model.PaisDestinoID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CidadeDestino, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CidadeDestino)
+                @Html.ValidationMessageFor(model => model.CidadeDestino)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataViagemIncial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.DataViagemIncial)
+                @Html.ValidationMessageFor(model => model.DataViagemIncial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataViagemFinal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.DataViagemFinal)
+                @Html.ValidationMessageFor(model => model.DataViagemFinal)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

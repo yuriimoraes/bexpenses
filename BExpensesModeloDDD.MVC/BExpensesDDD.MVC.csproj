@@ -131,11 +131,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\DespesaPerDiem\" />
     <Folder Include="Views\DespesaPrincipal\" />
-    <Folder Include="Views\SolicitacaoViagem\" />
-    <Folder Include="Views\TaxaCambio\" />
-    <Folder Include="Views\TipoAcomodacao\" />
-    <Folder Include="Views\TipoDespesaCarro\" />
-    <Folder Include="Views\TipoViagem\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -293,6 +288,34 @@
     <Content Include="Views\RespostaSolicitacao\Index.cshtml" />
     <Content Include="Views\SolicitacaoReembolso\Create.cshtml" />
     <Content Include="Views\SolicitacaoReembolso\Delete.cshtml" />
+    <Content Include="Views\SolicitacaoReembolso\Edit.cshtml" />
+    <Content Include="Views\SolicitacaoReembolso\Details.cshtml" />
+    <Content Include="Views\SolicitacaoReembolso\Index.cshtml" />
+    <Content Include="Views\SolicitacaoViagem\Create.cshtml" />
+    <Content Include="Views\SolicitacaoViagem\Delete.cshtml" />
+    <Content Include="Views\SolicitacaoViagem\Details.cshtml" />
+    <Content Include="Views\SolicitacaoViagem\Edit.cshtml" />
+    <Content Include="Views\SolicitacaoViagem\Index.cshtml" />
+    <Content Include="Views\TaxaCambio\Create.cshtml" />
+    <Content Include="Views\TaxaCambio\Delete.cshtml" />
+    <Content Include="Views\TaxaCambio\Details.cshtml" />
+    <Content Include="Views\TaxaCambio\Edit.cshtml" />
+    <Content Include="Views\TaxaCambio\Index.cshtml" />
+    <Content Include="Views\TipoAcomodacao\Create.cshtml" />
+    <Content Include="Views\TipoAcomodacao\Delete.cshtml" />
+    <Content Include="Views\TipoAcomodacao\Edit.cshtml" />
+    <Content Include="Views\TipoAcomodacao\Details.cshtml" />
+    <Content Include="Views\TipoAcomodacao\Index.cshtml" />
+    <Content Include="Views\TipoDespesaCarro\Create.cshtml" />
+    <Content Include="Views\TipoDespesaCarro\Edit.cshtml" />
+    <Content Include="Views\TipoDespesaCarro\Delete.cshtml" />
+    <Content Include="Views\TipoDespesaCarro\Details.cshtml" />
+    <Content Include="Views\TipoDespesaCarro\Index.cshtml" />
+    <Content Include="Views\TipoViagem\Create.cshtml" />
+    <Content Include="Views\TipoViagem\Delete.cshtml" />
+    <Content Include="Views\TipoViagem\Details.cshtml" />
+    <Content Include="Views\TipoViagem\Edit.cshtml" />
+    <Content Include="Views\TipoViagem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BExpensesDDD.Application\BExpensesDDD.Application.csproj">

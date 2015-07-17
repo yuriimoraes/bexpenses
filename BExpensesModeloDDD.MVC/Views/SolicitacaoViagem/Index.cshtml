@@ -1,0 +1,105 @@
+﻿@model IEnumerable<BExpensesModeloDDD.MVC.ViewModels.SolicitacaoViagemViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PessoaRecebeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PessoaSolicitanteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RespostaSolicitacaoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescricaoViagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adiantamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorAdiantamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaisOrigemID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CidadeOrigem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaisDestinoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CidadeDestino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataViagemIncial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataViagemFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PessoaRecebeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PessoaSolicitanteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RespostaSolicitacaoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescricaoViagem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adiantamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorAdiantamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaisOrigemID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CidadeOrigem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaisDestinoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CidadeDestino)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataViagemIncial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataViagemFinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SolicitacaoViagemID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SolicitacaoViagemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SolicitacaoViagemID })
+        </td>
+    </tr>
+}
+
+</table>
