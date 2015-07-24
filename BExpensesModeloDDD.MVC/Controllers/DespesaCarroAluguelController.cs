@@ -11,6 +11,7 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class DespesaCarroAluguelController : Controller
     {
         private readonly IDespesaCarroAluguelAppService _despesaCarroAluguelApp;

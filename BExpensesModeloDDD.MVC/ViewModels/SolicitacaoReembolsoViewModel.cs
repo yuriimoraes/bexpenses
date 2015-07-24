@@ -13,8 +13,6 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         public int SolicitacaoReembolsoID { get; set; }
         public int DespesaPrincipalID { get; set; }
         public virtual DespesaPrincipalViewModel DespesaPrincipal { get; set; }
-        public int RespostaSolicitacaoID { get; set; }
-        public virtual RespostaSolicitacaoViewModel RespostaSolicitacao { get; set; }
         [DisplayName("Data Reembolso")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataReembolso { get; set; }
@@ -28,5 +26,7 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         public double Valor { get; set; }
         [DisplayName("Observação")]
         public string Observacao { get; set; }
+
+        public virtual IEnumerable<RespostaSolicitacaoReembolsoViewModel> RespostasSolicitacoesReembolsos { get; set; }
     }
 }

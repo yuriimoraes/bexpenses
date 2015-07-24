@@ -6,11 +6,11 @@ using BExpensesDDD.Domain.Interfaces.Services;
 
 namespace BExpensesDDD.Domain.Services
 {
-    public class RespostaSolicitacaoService : ServiceBase<RespostaSolicitacao>, IRespostaSolicitacaoService
+    public class RespostaSolicitacaoReembolsoService : ServiceBase<RespostaSolicitacaoReembolso>, IRespostaSolicitacaoReembolsoService
     {
         private readonly IRepositoryRespostaSolicitacao _repositoryRespostaSolicitacao;
 
-        public RespostaSolicitacaoService(IRepositoryRespostaSolicitacao repositoryRespostaSolicitacao)
+        public RespostaSolicitacaoReembolsoService(IRepositoryRespostaSolicitacao repositoryRespostaSolicitacao)
             : base(repositoryRespostaSolicitacao) 
         {
             _repositoryRespostaSolicitacao = repositoryRespostaSolicitacao;

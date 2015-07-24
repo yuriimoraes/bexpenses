@@ -27,7 +27,8 @@ namespace BExpensesModeloDDD.MVC.AutoMapper
             Mapper.CreateMap<PaisViewModel, Pais>();
             Mapper.CreateMap<ParametrosSistemaViewModel, ParametrosSistema>();
             Mapper.CreateMap<PessoaViewModel, Pessoa>();
-            Mapper.CreateMap<RespostaSolicitacaoViewModel, RespostaSolicitacao>();
+            Mapper.CreateMap<RespostaSolicitacaoReembolsoViewModel, RespostaSolicitacaoReembolso>();
+            Mapper.CreateMap<RespostaSolicitacaoViagemViewModel, RespostaSolicitacaoViagem>();
             Mapper.CreateMap<SolicitacaoReembolsoViewModel, SolicitacaoReembolso>();
             Mapper.CreateMap<SolicitacaoViagemViewModel, SolicitacaoViagem>();
             Mapper.CreateMap<TaxaCambioViewModel, TaxaCambio>();

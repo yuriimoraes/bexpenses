@@ -10,6 +10,7 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class CentroCustoController : Controller
     {
         private readonly ICentroCustoAppService _centroCustoApp;

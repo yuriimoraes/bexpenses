@@ -61,7 +61,8 @@
     <Compile Include="EntityConfig\PaisConfiguration.cs" />
     <Compile Include="EntityConfig\ParametrosSistemaConfiguration.cs" />
     <Compile Include="EntityConfig\PessoaConfiguration.cs" />
-    <Compile Include="EntityConfig\RespostaSolicitacaoConfiguration.cs" />
+    <Compile Include="EntityConfig\RespostaSolicitacaoReembolsoConfiguration.cs" />
+    <Compile Include="EntityConfig\RespostaSolicitacaoViagemConfiguration.cs" />
     <Compile Include="EntityConfig\SolicitacaoReembolsoConfiguration.cs" />
     <Compile Include="EntityConfig\SolicitacaoViagemConfiguration.cs" />
     <Compile Include="EntityConfig\TaxaCambioConfiguration.cs" />
@@ -85,7 +86,8 @@
     <Compile Include="Repositories\RepositoryParametrosSistema.cs" />
     <Compile Include="Repositories\RepositoryPessoa.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Repositories\RepositoryRespostaSolicitacao.cs" />
+    <Compile Include="Repositories\RepositoryRespostaSolicitacaoReembolso.cs" />
+    <Compile Include="Repositories\RepositoryRespostaSolicitacaoViagem.cs" />
     <Compile Include="Repositories\RepositorySolicitacaoReembolso.cs" />
     <Compile Include="Repositories\RepositorySolicitacaoViagem.cs" />
     <Compile Include="Repositories\RepositoryTaxaCambio.cs" />

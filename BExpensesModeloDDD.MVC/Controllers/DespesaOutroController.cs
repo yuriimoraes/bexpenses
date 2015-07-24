@@ -11,6 +11,7 @@ using BExpensesDDD.Domain.Interfaces.Services;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class DespesaOutroController : Controller
     {
         private readonly IDespesaOutroService _despesaOutroApp;

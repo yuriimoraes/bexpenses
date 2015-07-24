@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using BExpensesDDD.Application.Enum;
+
 namespace BExpensesDDD.Domain.Entities
 {
     public class SolicitacaoViagem
@@ -9,8 +11,6 @@ namespace BExpensesDDD.Domain.Entities
         public virtual Pessoa PessoaRecebe { get; set; }
         public int PessoaSolicitanteID { get; set; }
         public virtual Pessoa PessoaSolicitante { get; set; }
-        public int RespostaSolicitacaoID { get; set; }
-        public virtual RespostaSolicitacao RespostaSolicitacao { get; set; }
         public string DescricaoViagem { get; set; }
         public bool Adiantamento { get; set; }
         public double ValorAdiantamento  { get; set; }
@@ -22,10 +22,11 @@ namespace BExpensesDDD.Domain.Entities
         public string CidadeDestino { get; set; }
         public DateTime DataViagemIncial { get; set; }
         public DateTime DataViagemFinal { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
         public virtual IEnumerable<DespesaPrincipal> DespesasPrincipais { get; set; }
         public virtual IEnumerable<DespesaPerDiem> DespesasPerDiem { get; set; }
+        public virtual IEnumerable<RespostaSolicitacaoViagem> RespostasSolicitacoesViagens { get; set; }
 
     }
 }

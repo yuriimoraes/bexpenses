@@ -11,5 +11,6 @@ namespace BExpensesDDD.Domain.Entities
         public double ValorDespesaOutro { get; set; }
         public string Observacao { get; set; }
         public DateTime DataCadastro { get; set; }
+        public byte[] Imagem { get; set; }
     }
 }

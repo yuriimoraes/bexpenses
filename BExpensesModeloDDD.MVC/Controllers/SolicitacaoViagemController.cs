@@ -11,13 +11,18 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class SolicitacaoViagemController : Controller
     {
         private readonly ISolicitacaoViagemAppService _solicitacaoViagemApp;
+        private readonly IPessoaAppService _pessoaApp;
+        private readonly IPaisAppService _paisApp;
 
-        public SolicitacaoViagemController(ISolicitacaoViagemAppService solicitacaoViagemApp)
+        public SolicitacaoViagemController(ISolicitacaoViagemAppService solicitacaoViagemApp, IPessoaAppService pessoaApp, IPaisAppService paisApp)
         {
             _solicitacaoViagemApp = solicitacaoViagemApp;
+            _pessoaApp = pessoaApp;
+            _paisApp = paisApp;
         }
 
         //
@@ -42,6 +47,11 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /SolicitacaoViagem/Create
         public ActionResult Create()
         {
+            ViewBag.PessoaRecebeID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
+            ViewBag.PessoaSolicitanteID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
+            ViewBag.PaisOrigemID = new SelectList(_paisApp.GetAll(), "PaisID", "NomePais");
+            ViewBag.PaisDestinoID = new SelectList(_paisApp.GetAll(), "PaisID", "NomePais");
+
             return View();
         }
 
@@ -64,6 +74,11 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /SolicitacaoViagem/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.PessoaRecebeID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
+            ViewBag.PessoaSolicitanteID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
+            ViewBag.PaisOrigemID = new SelectList(_paisApp.GetAll(), "PaisID", "NomePais");
+            ViewBag.PaisDestinoID = new SelectList(_paisApp.GetAll(), "PaisID", "NomePais");
+
             var solicitacaoViagem = _solicitacaoViagemApp.GetById(id);
             var solicitacaoViagemViewModel = Mapper.Map<SolicitacaoViagem, SolicitacaoViagemViewModel>(solicitacaoViagem);
             return View(solicitacaoViagemViewModel);

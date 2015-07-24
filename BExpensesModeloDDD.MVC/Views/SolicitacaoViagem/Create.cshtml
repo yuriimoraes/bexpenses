@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PessoaRecebeID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PessoaRecebeID)
+                @Html.DropDownList("PessoaRecebeID", String.Empty)
                 @Html.ValidationMessageFor(model => model.PessoaRecebeID)
             </div>
         </div>
@@ -27,16 +27,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PessoaSolicitanteID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PessoaSolicitanteID)
+                @Html.DropDownList("PessoaSolicitanteID", String.Empty)
                 @Html.ValidationMessageFor(model => model.PessoaSolicitanteID)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RespostaSolicitacaoID, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RespostaSolicitacaoID)
-                @Html.ValidationMessageFor(model => model.RespostaSolicitacaoID)
             </div>
         </div>
 
@@ -55,19 +47,19 @@
                 @Html.ValidationMessageFor(model => model.Adiantamento)
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ValorAdiantamento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ValorAdiantamento)
-                @Html.ValidationMessageFor(model => model.ValorAdiantamento)
+       
+            <div class="form-group">
+                @Html.LabelFor(model => model.ValorAdiantamento, new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ValorAdiantamento)
+                    @Html.ValidationMessageFor(model => model.ValorAdiantamento)
+                </div>
             </div>
-        </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.PaisOrigemID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PaisOrigemID)
+                @Html.DropDownList("PaisOrigemID", String.Empty)
                 @Html.ValidationMessageFor(model => model.PaisOrigemID)
             </div>
         </div>
@@ -83,7 +75,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PaisDestinoID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PaisDestinoID)
+                @Html.DropDownList("PaisDestinoID", String.Empty)
                 @Html.ValidationMessageFor(model => model.PaisDestinoID)
             </div>
         </div>
@@ -99,7 +91,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataViagemIncial, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.DataViagemIncial)
+                @Html.EditorFor(model => model.DataViagemIncial)
                 @Html.ValidationMessageFor(model => model.DataViagemIncial)
             </div>
         </div>
@@ -107,16 +99,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataViagemFinal, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.DataViagemFinal)
+                @Html.EditorFor(model => model.DataViagemFinal)
                 @Html.ValidationMessageFor(model => model.DataViagemFinal)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Status)
-                @Html.ValidationMessageFor(model => model.Status)
             </div>
         </div>
 

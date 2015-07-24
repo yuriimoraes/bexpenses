@@ -85,7 +85,7 @@ namespace BExpensesModeloDDD.MVC.App_Start
             kernel.Bind<IPaisAppService>().To<PaisAppService>();
             kernel.Bind<IParametrosSistemaAppService>().To<ParametrosSistemaAppService>();
             kernel.Bind<IPessoaAppService>().To<PessoaAppService>();
-            kernel.Bind<IRespostaSolicitacaoAppService>().To<RespostaSolicitacaoAppService>();
+            kernel.Bind<IRespostaSolicitacaoReembolsoAppService>().To<RespostaSolicitacaoReembolsoAppService>();
             kernel.Bind<ISolicitacaoReembolsoAppService>().To<SolicitacaoReembolsoAppService>();
             kernel.Bind<ISolicitacaoViagemAppService>().To<SolicitacaoViagemAppService>();
             kernel.Bind<ITaxaCambioAppService>().To<TaxaCambioAppService>();
@@ -108,7 +108,7 @@ namespace BExpensesModeloDDD.MVC.App_Start
             kernel.Bind<IPaisService>().To<PaisService>();
             kernel.Bind<IPessoaService>().To<PessoaService>();
             kernel.Bind<IParametrosSistemaService>().To<ParametrosSistemaService>();
-            kernel.Bind<IRespostaSolicitacaoService>().To<RespostaSolicitacaoService>();
+            kernel.Bind<IRespostaSolicitacaoReembolsoService>().To<RespostaSolicitacaoReembolsoService>();
             kernel.Bind<ISolicitacaoReembolsoService>().To<SolicitacaoReembolsoService>();
             kernel.Bind<ISolicitacaoViagemService>().To<SolicitacaoViagemService>();
             kernel.Bind<ITaxaCambioService>().To<TaxaCambioService>();
@@ -131,7 +131,7 @@ namespace BExpensesModeloDDD.MVC.App_Start
             kernel.Bind<IRepositoryPais>().To<RepositoryPais>();
             kernel.Bind<IRepositoryPessoa>().To<RepositoryPessoa>();
             kernel.Bind<IRepositoryParametrosSistema>().To<RepositoryParametrosSistema>();
-            kernel.Bind<IRepositoryRespostaSolicitacao>().To<RepositoryRespostaSolicitacao>();
+            kernel.Bind<IRepositoryRespostaSolicitacao>().To<RepositoryRespostaSolicitacaoReembolso>();
             kernel.Bind<IRepositorySolicitacaoReembolso>().To<RepositorySolicitacaoReembolso>();
             kernel.Bind<IRepositorySolicitacaoViagem>().To<RepositorySolicitacaoViagem>();
             kernel.Bind<IRepositoryTaxaCambio>().To<RepositoryTaxaCambio>();

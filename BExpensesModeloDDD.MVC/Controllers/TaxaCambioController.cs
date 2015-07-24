@@ -11,6 +11,7 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class TaxaCambioController : Controller
     {
         private readonly ITaxaCambioAppService _taxaCambioApp;

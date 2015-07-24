@@ -10,5 +10,7 @@ namespace BExpensesDDD.Domain.Interfaces.Services
     public interface IPessoaService : IServiceBase<Pessoa>
     {
         IEnumerable<Pessoa> BuscarNomePessoa(string nome);
+        IEnumerable<Pessoa> BuscarAprovadores( IEnumerable<Pessoa> pessoas);
+        Pessoa ObterAdministrador(Pessoa pessoa);
     }
 }

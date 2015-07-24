@@ -11,6 +11,7 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class DespesaAcomodacaoController : Controller
     {
         private readonly IDespesaAcomodacaoAppService _despesaAcomodacaoApp;
@@ -46,7 +47,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.TipoAcomodacaoID = new SelectList(_tipoAcomodacaoApp.GetAll(), "TipoAcomodacaoID", "DescricaoTipoAcomodacao");
-            ViewBag.PaisAcomodacaoID = new SelectList(_paisApp.GetAll(), "PaisAcomodacaoID", "NomePais");
+            ViewBag.PaisID = new SelectList(_paisApp.GetAll(), "PaisID", "NomePais");
             return View();
         }
 
@@ -74,7 +75,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
             var despesaAcomodacaoViewModel = Mapper.Map<DespesaAcomodacao, DespesaAcomodacaoViewModel>(despesaAcomodacao);
 
             ViewBag.TipoAcomodacaoID = new SelectList(_tipoAcomodacaoApp.GetAll(), "TipoAcomodacaoID", "DescricaoTipoAcomodacao");
-            ViewBag.PaisAcomodacaoID = new SelectList(_paisApp.GetAll(), "PaisAcomodacaoID", "NomePais");
+            ViewBag.PaisID = new SelectList(_paisApp.GetAll(), "PaisID", "NomePais");
              
             return View(despesaAcomodacaoViewModel);
         }
@@ -82,11 +83,18 @@ namespace BExpensesModeloDDD.MVC.Controllers
         //
         // POST: /DespesaAcomodacao/Edit/5
         [HttpPost]
-        public ActionResult Edit(DespesaAcomodacaoViewModel despesaAcomodacao)
+        public ActionResult Edit(DespesaAcomodacaoViewModel despesaAcomodacao, HttpPostedFileBase imagem = null)
         {
             if (ModelState.IsValid)
             {
                 var despesaAcomodacaoDomain = Mapper.Map<DespesaAcomodacaoViewModel, DespesaAcomodacao>(despesaAcomodacao);
+                if (imagem != null)
+                {
+                    despesaAcomodacaoDomain.Imagem = new byte[imagem.ContentLength];
+                    despesaAcomodacaoDomain.ImagemMimmeType = imagem.ContentType;
+                    imagem.InputStream.Read(despesaAcomodacaoDomain.Imagem, 0, imagem.ContentLength);
+                    //despesaAcomodacao.Imagem = new byte[imagem.ContentLength];
+                }
                 _despesaAcomodacaoApp.Update(despesaAcomodacaoDomain);
                 return RedirectToAction("Index");
             }
@@ -116,5 +124,20 @@ namespace BExpensesModeloDDD.MVC.Controllers
             return RedirectToAction("Index");
 
         }
+
+        public FileContentResult ObterImagem(int id)
+        {
+            var despesaAcomodacao = _despesaAcomodacaoApp.GetById(id);
+            var despesaAcomodacaoViewModel = Mapper.Map<DespesaAcomodacao, DespesaAcomodacaoViewModel>(despesaAcomodacao);
+   
+            if (despesaAcomodacao != null)
+            {
+                return File(despesaAcomodacao.Imagem, despesaAcomodacao.ImagemMimmeType);
+            }
+            
+            return null;
+            
+        }
+
     }
 }

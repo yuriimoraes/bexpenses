@@ -11,12 +11,14 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class PessoaController : Controller
     {
         private readonly IPessoaAppService _pessoaApp;
         private readonly ICentroCustoAppService _centroCustoApp;
+        
 
-        public PessoaController(IPessoaAppService pessoaApp, ICentroCustoAppService centroCustoApp)
+        public PessoaController(IPessoaAppService pessoaApp, ICentroCustoAppService centroCustoApp, IPessoaAppService aprovador1App, IPessoaAppService aprovador2App)
         {
             _pessoaApp = pessoaApp;
             _centroCustoApp = centroCustoApp;
@@ -45,6 +47,8 @@ namespace BExpensesModeloDDD.MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.CentroCustoID = new SelectList(_centroCustoApp.GetAll(), "CentroCustoID", "Descricao");
+            ViewBag.Aprovador1ID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
+            ViewBag.Aprovador2ID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
             return View();
         }
 
@@ -71,6 +75,8 @@ namespace BExpensesModeloDDD.MVC.Controllers
             var pessoa = _pessoaApp.GetById(id);
             var pessoaViewModel = Mapper.Map<Pessoa, PessoaViewModel>(pessoa);
             ViewBag.CentroCustoID = new SelectList(_centroCustoApp.GetAll(), "CentroCustoID", "Descricao");
+            ViewBag.Aprovador1ID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
+            ViewBag.Aprovador2ID = new SelectList(_pessoaApp.BuscarAprovadores(), "PessoaID", "Nome");
             return View(pessoaViewModel);
         }
 

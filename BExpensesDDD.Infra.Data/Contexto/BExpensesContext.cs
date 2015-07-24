@@ -21,7 +21,7 @@ namespace BExpensesDDD.Infra.Data.Contexto
         public DbSet<TipoViagem> TiposViagens { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<CentroCusto> CentroCustos { get; set; }
-        public DbSet<RespostaSolicitacao> RespostasSolicitacoes { get; set; }
+        public DbSet<RespostaSolicitacaoReembolso> RespostasSolicitacoes { get; set; }
         public DbSet<SolicitacaoViagem> SolicitacoesViagens { get; set; }
         public DbSet<DespesaPrincipal> DespesasPrincipai { get; set; }
         public DbSet<TaxaCambio> TaxasCambio { get; set; }
@@ -63,7 +63,8 @@ namespace BExpensesDDD.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new PaisConfiguration());
             modelBuilder.Configurations.Add(new ParametrosSistemaConfiguration());
             modelBuilder.Configurations.Add(new PessoaConfiguration());
-            modelBuilder.Configurations.Add(new RespostaSolicitacaoConfiguration());
+            modelBuilder.Configurations.Add(new RespostaSolicitacaoReembolsoConfiguration());
+            modelBuilder.Configurations.Add(new RespostaSolicitacaoViagemConfiguration());
             modelBuilder.Configurations.Add(new SolicitacaoReembolsoConfiguration());
             modelBuilder.Configurations.Add(new SolicitacaoViagemConfiguration());
             modelBuilder.Configurations.Add(new TaxaCambioConfiguration());
@@ -98,6 +99,7 @@ namespace BExpensesDDD.Infra.Data.Contexto
 
                 entry.Property("DataAtualizacao").CurrentValue = DateTime.Now;
             }
+            
             return base.SaveChanges();
         }
 

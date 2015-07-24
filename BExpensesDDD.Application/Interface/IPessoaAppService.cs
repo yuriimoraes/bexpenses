@@ -8,5 +8,8 @@ namespace BExpensesDDD.Application.Interface
     public interface IPessoaAppService : IAppServiceBase<Pessoa>
     {
         IEnumerable<Pessoa> BuscarNomePessoa(string nome);
+        IEnumerable<Pessoa> BuscarAprovadores();
+        Pessoa ObterPessoa(Pessoa pessoa);
+
     }
 }

@@ -16,5 +16,6 @@ namespace BExpensesDDD.Domain.Entities
         public string Observacao { get; set; }
         public string Status { get; set; }
         public DateTime DataCadastro { get; set; }
+        public byte[] Imagem { get; set; }
     }
 }

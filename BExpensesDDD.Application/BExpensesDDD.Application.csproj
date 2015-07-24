@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IRespostaSolicitacaoViagemAppService.cs" />
     <Compile Include="Service\AppServiceBase.cs" />
     <Compile Include="Interface\IAppServiceBase.cs" />
     <Compile Include="Interface\ICentroCustoAppService.cs" />
@@ -55,7 +56,7 @@
     <Compile Include="Interface\IPaisAppService.cs" />
     <Compile Include="Interface\IParametrosSistemaAppService.cs" />
     <Compile Include="Interface\IPessoaAppService.cs" />
-    <Compile Include="Interface\IRespostaSolicitacaoAppService.cs" />
+    <Compile Include="Interface\IRespostaSolicitacaoReembolsoAppService.cs" />
     <Compile Include="Interface\ISolicitacaoReembolsoAppService.cs" />
     <Compile Include="Interface\ISolicitacaoViagemAppService.cs" />
     <Compile Include="Interface\ITaxaCambioAppService.cs" />
@@ -77,7 +78,8 @@
     <Compile Include="Service\PaisAppService.cs" />
     <Compile Include="Service\ParametrosSistemaAppService.cs" />
     <Compile Include="Service\PessoaAppService.cs" />
-    <Compile Include="Service\RespostaSolicitacaoAppService.cs" />
+    <Compile Include="Service\RespostaSolicitacaoReembolsoAppService.cs" />
+    <Compile Include="Service\RespostaSolicitacaoViagemAppService.cs" />
     <Compile Include="Service\SolicitacaoReembolsoAppService.cs" />
     <Compile Include="Service\SolicitacaoViagemAppService.cs" />
     <Compile Include="Service\TaxaCambioAppService.cs" />

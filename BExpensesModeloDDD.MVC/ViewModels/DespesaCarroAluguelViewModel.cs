@@ -3,6 +3,9 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
+
 namespace BExpensesModeloDDD.MVC.ViewModels
 {
     public class DespesaCarroAluguelViewModel
@@ -50,5 +53,9 @@ namespace BExpensesModeloDDD.MVC.ViewModels
 
         [ScaffoldColumn(false)]
         public DateTime DataCadastro { get; set; }
+        
+        [NotMapped]
+        public HttpPostedFileBase Imagem { get; set; }
+        
     }
 }

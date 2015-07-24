@@ -11,11 +11,12 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class RespostaSolicitacaoController : Controller
     {
-        private readonly IRespostaSolicitacaoAppService _respostaSolicitacaoApp;
+        private readonly IRespostaSolicitacaoReembolsoAppService _respostaSolicitacaoApp;
 
-        public RespostaSolicitacaoController(IRespostaSolicitacaoAppService respostaSolicitacaoApp)
+        public RespostaSolicitacaoController(IRespostaSolicitacaoReembolsoAppService respostaSolicitacaoApp)
         {
             _respostaSolicitacaoApp = respostaSolicitacaoApp;
         }
@@ -24,7 +25,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // GET: /RespostaSolicitacao/
         public ActionResult Index()
         {
-            var respostaSolicitacaoViewModel = Mapper.Map<IEnumerable<RespostaSolicitacao>, IEnumerable<RespostaSolicitacaoViewModel>>(_respostaSolicitacaoApp.GetAll());
+            var respostaSolicitacaoViewModel = Mapper.Map<IEnumerable<RespostaSolicitacaoReembolso>, IEnumerable<RespostaSolicitacaoReembolsoViewModel>>(_respostaSolicitacaoApp.GetAll());
             return View(respostaSolicitacaoViewModel);
         }
 
@@ -33,7 +34,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
         public ActionResult Details(int id)
         {
             var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
-            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacao, RespostaSolicitacaoViewModel>(respostaSolicitacao);
+            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacaoReembolso, RespostaSolicitacaoReembolsoViewModel>(respostaSolicitacao);
             return View(respostaSolicitacaoViewModel);
         }
 
@@ -48,11 +49,11 @@ namespace BExpensesModeloDDD.MVC.Controllers
         // POST: /RespostaSolicitacao/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RespostaSolicitacaoViewModel respostaSolicitacao)
+        public ActionResult Create(RespostaSolicitacaoReembolsoViewModel respostaSolicitacao)
         {
             if (ModelState.IsValid)
             {
-                var respostaSolicitacaoDomain = Mapper.Map<RespostaSolicitacaoViewModel, RespostaSolicitacao>(respostaSolicitacao);
+                var respostaSolicitacaoDomain = Mapper.Map<RespostaSolicitacaoReembolsoViewModel, RespostaSolicitacaoReembolso>(respostaSolicitacao);
                 _respostaSolicitacaoApp.Add(respostaSolicitacaoDomain);
                 return RedirectToAction("Index");
             }
@@ -65,18 +66,18 @@ namespace BExpensesModeloDDD.MVC.Controllers
         public ActionResult Edit(int id)
         {
             var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
-            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacao, RespostaSolicitacaoViewModel>(respostaSolicitacao);
+            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacaoReembolso, RespostaSolicitacaoReembolsoViewModel>(respostaSolicitacao);
             return View(respostaSolicitacaoViewModel);
         }
 
         //
         // POST: /RespostaSolicitacao/Edit/5
         [HttpPost]
-        public ActionResult Edit(RespostaSolicitacaoViewModel respostaSolicitacao)
+        public ActionResult Edit(RespostaSolicitacaoReembolsoViewModel respostaSolicitacao)
         {
             if (ModelState.IsValid)
             {
-                var respostaSolicitacaoDomain = Mapper.Map<RespostaSolicitacaoViewModel, RespostaSolicitacao>(respostaSolicitacao);
+                var respostaSolicitacaoDomain = Mapper.Map<RespostaSolicitacaoReembolsoViewModel, RespostaSolicitacaoReembolso>(respostaSolicitacao);
                 _respostaSolicitacaoApp.Update(respostaSolicitacaoDomain);
                 return RedirectToAction("Index");
             }
@@ -88,7 +89,7 @@ namespace BExpensesModeloDDD.MVC.Controllers
         public ActionResult Delete(int id)
         {
             var respostaSolicitacao = _respostaSolicitacaoApp.GetById(id);
-            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacao, RespostaSolicitacaoViewModel>(respostaSolicitacao);
+            var respostaSolicitacaoViewModel = Mapper.Map<RespostaSolicitacaoReembolso, RespostaSolicitacaoReembolsoViewModel>(respostaSolicitacao);
 
             return View(respostaSolicitacaoViewModel);
         }

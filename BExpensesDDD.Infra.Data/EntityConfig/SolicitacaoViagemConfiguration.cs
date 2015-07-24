@@ -11,9 +11,6 @@ namespace BExpensesDDD.Infra.Data.EntityConfig
             HasKey(s => s.SolicitacaoViagemID);
             Property(s => s.Status)
                 .IsRequired();
-            HasRequired(s => s.RespostaSolicitacao)
-                .WithMany()
-                .HasForeignKey(s => s.RespostaSolicitacaoID);
             HasRequired(s => s.PaisDestino)
                 .WithMany()
                 .HasForeignKey(s => s.PaisDestinoID);

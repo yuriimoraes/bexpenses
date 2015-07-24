@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using BExpensesDDD.Application.Enum;
+
 namespace BExpensesModeloDDD.MVC.ViewModels
 {
     public class SolicitacaoViagemViewModel
@@ -17,10 +19,7 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DisplayName("Pessoa Solicitante")]
         public int PessoaSolicitanteID { get; set; }
         public virtual PessoaViewModel PessoaSolicitante { get; set; }
-        [DisplayName("Resposta Solicitação")]
-        public int RespostaSolicitacaoID { get; set; }
-        public virtual RespostaSolicitacaoViewModel RespostaSolicitacao { get; set; }
-
+        
         [Required(ErrorMessage = "Preencha o campo Descrição")]
         [MaxLength(150, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Minimo {0} caracteres")]
@@ -55,9 +54,10 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DisplayName("Data Viagem Final")]
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataViagemFinal { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
         public virtual IEnumerable<DespesaPrincipalViewModel> DespesasPrincipais { get; set; }
         public virtual IEnumerable<DespesaPerDiemViewModel> DespesasPerDiem { get; set; }
+        public virtual IEnumerable<RespostaSolicitacaoViagemViewModel> RespostasSolicitacoesViagens { get; set; }
     }
 }

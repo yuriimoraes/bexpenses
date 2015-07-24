@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
 
 namespace BExpensesModeloDDD.MVC.ViewModels
 {
@@ -20,15 +22,16 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DisplayName("Descrição")]
         public string DescricaoAcomodacao { get; set; }
 
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Data Inicial")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataInicial { get; set; }
 
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Data Final")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataFinal { get; set; }
+
         [DisplayName("País Acomodação")]
-        public int PaisAcomodacaoID { get; set; }
+        public int PaisID { get; set; }
         public virtual PaisViewModel PaisAcomodacao { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo de Cidade")]
@@ -48,5 +51,10 @@ namespace BExpensesModeloDDD.MVC.ViewModels
 
         [ScaffoldColumn(false)]
         public DateTime DataCadastro { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase Imagem { get; set; }
+        [ScaffoldColumn(false)]
+        public string ImagemMimmeType { get; set; }
     }
 }

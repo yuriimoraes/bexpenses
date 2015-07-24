@@ -25,7 +25,7 @@ namespace BExpensesDDD.Infra.Data.EntityConfig
                .WithMany()
                .HasForeignKey(p => p.CentroCustoID);
             
-            /*asOptional(p => p.Aprovador1)
+           /*HasOptional(p => p.Aprovador1)
               .WithMany()
               .HasForeignKey(p => p.Aprovador1ID);
             HasOptional(p => p.Aprovador2)

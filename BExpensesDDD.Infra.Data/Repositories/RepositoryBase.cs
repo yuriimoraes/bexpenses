@@ -34,7 +34,6 @@ namespace BExpensesDDD.Infra.Data.Repositories
             Db.Entry(obj).State = EntityState.Modified;
             Db.SaveChanges();
         }
-
         public void Remove(TEntity obj)
         {
             Db.Set<TEntity>().Remove(obj);
@@ -44,7 +43,6 @@ namespace BExpensesDDD.Infra.Data.Repositories
         {
             Db.Dispose();
         }
-
         public void Dispose()
         {
             Db.Dispose();

@@ -13,9 +13,7 @@ namespace BExpensesDDD.Infra.Data.EntityConfig
             HasRequired(s => s.DespesaPrincipal)
                 .WithMany()
                 .HasForeignKey(s => s.DespesaPrincipalID);
-            HasRequired(s => s.RespostaSolicitacao)
-                .WithMany()
-                .HasForeignKey(s => s.RespostaSolicitacaoID);
+            
  
  
         }   

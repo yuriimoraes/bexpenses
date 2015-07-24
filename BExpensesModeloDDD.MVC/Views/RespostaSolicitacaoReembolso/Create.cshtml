@@ -1,4 +1,4 @@
-﻿@model BExpensesModeloDDD.MVC.ViewModels.RespostaSolicitacaoViewModel
+﻿@model BExpensesModeloDDD.MVC.ViewModels.RespostaSolicitacaoReembolsoViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -25,14 +25,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DataResposta, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataResposta)
-                @Html.ValidationMessageFor(model => model.DataResposta)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Status)
@@ -43,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Observacao)
+                @Html.TextAreaFor(model => model.Observacao)
                 @Html.ValidationMessageFor(model => model.Observacao)
             </div>
         </div>

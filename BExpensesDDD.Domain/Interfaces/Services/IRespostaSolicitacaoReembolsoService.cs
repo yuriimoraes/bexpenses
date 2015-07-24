@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BExpensesDDD.Domain.Interfaces.Services
 {
-    public interface IRespostaSolicitacaoService : IServiceBase<RespostaSolicitacao>
+    public interface IRespostaSolicitacaoReembolsoService : IServiceBase<RespostaSolicitacaoReembolso>
     {
     }
 }

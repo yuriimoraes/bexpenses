@@ -12,12 +12,12 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [Key]
         public int PessoaID { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo Nome")]
+        //[Required(ErrorMessage = "Preencha o campo Nome")]
         [MaxLength(150, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(2, ErrorMessage = "Minimo {0} caracteres")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo E-mail")]
+        //[Required(ErrorMessage = "Preencha o campo E-mail")]
         [MaxLength(150, ErrorMessage = "Máximo {0} caracteres")]
         [EmailAddress(ErrorMessage = "Preencha um E-mail válido")]
         [DisplayName("E-mail")]
@@ -35,7 +35,7 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [MinLength(2, ErrorMessage = "Minimo {0} caracteres")]
         public string Senha { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo Telefone")]
+        //[Required(ErrorMessage = "Preencha o campo Telefone")]
         [MaxLength(14, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(11, ErrorMessage = "Minimo {0} caracteres")]
         [DisplayName("Telefone 1")]
@@ -46,25 +46,25 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         [DisplayName("Telefone 2")]
         public string Telefone2 { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo Nome Banco")]
+        //[Required(ErrorMessage = "Preencha o campo Nome Banco")]
         [MaxLength(80, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(3, ErrorMessage = "Minimo {0} caracteres")]
         [DisplayName("Nome Banco")]
         public string NomeBanco { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo Numero Conta Banco")]
+        //[Required(ErrorMessage = "Preencha o campo Numero Conta Banco")]
         [MaxLength(80, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(3, ErrorMessage = "Minimo {0} caracteres")]
         [DisplayName("Numero Conta")]
         public string NumeroConta { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo Agência")]
+        //[Required(ErrorMessage = "Preencha o campo Agência")]
         [MaxLength(80, ErrorMessage = "Máximo {0} caracteres")]
         [MinLength(3, ErrorMessage = "Minimo {0} caracteres")]
         [DisplayName("Agencia Conta")]
         public string AgenciaConta { get; set; }
 
-        [Required(ErrorMessage = "Preencha o campo Código Fornecedor")]
+        //[Required(ErrorMessage = "Preencha o campo Código Fornecedor")]
         [MaxLength(6, ErrorMessage = "Digite {0} caracteres")]
         [MinLength(6, ErrorMessage = "Digite {0} caracteres")]
         [DisplayName("Código Fornecedor SAP ")]
@@ -88,6 +88,6 @@ namespace BExpensesModeloDDD.MVC.ViewModels
         public virtual CentroCustoViewModel CentroCusto { get; set; }
 
         public virtual IEnumerable<SolicitacaoViagemViewModel> SolicitacoesViagens { get; set; }
-        public virtual IEnumerable<RespostaSolicitacaoViewModel> RespostasSolicitacoes { get; set; }
+        public virtual IEnumerable<RespostaSolicitacaoReembolsoViewModel> RespostasSolicitacoes { get; set; }
     }
 }

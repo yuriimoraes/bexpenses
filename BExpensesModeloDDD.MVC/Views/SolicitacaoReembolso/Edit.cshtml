@@ -26,17 +26,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RespostaSolicitacaoID, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RespostaSolicitacaoID)
-                @Html.ValidationMessageFor(model => model.RespostaSolicitacaoID)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.DataReembolso, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.DataReembolso)
+                @Html.EditorFor(model => model.DataReembolso)
                 @Html.ValidationMessageFor(model => model.DataReembolso)
             </div>
         </div>
@@ -44,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataSolicitacao, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.DataSolicitacao)
+                @Html.EditorFor(model => model.DataSolicitacao)
                 @Html.ValidationMessageFor(model => model.DataSolicitacao)
             </div>
         </div>
@@ -68,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Observacao, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Observacao)
+                @Html.TextAreaFor(model => model.Observacao)
                 @Html.ValidationMessageFor(model => model.Observacao)
             </div>
         </div>

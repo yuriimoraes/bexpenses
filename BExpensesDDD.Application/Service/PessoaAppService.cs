@@ -21,5 +21,17 @@ namespace BExpensesDDD.Application.Service
         {
             return _pessoa.BuscarNomePessoa(nome);  
         }
+
+
+        public IEnumerable<Pessoa> BuscarAprovadores()
+        {
+            return _pessoa.BuscarAprovadores(_pessoa.GetAll());  
+        }
+
+
+        public Pessoa ObterPessoa(Pessoa pessoa)
+        {
+            return _pessoa.ObterAdministrador(pessoa);
+        }
     }
 }

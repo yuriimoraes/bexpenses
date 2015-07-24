@@ -11,6 +11,7 @@ using BExpensesDDD.Application.Interface;
 
 namespace BExpensesModeloDDD.MVC.Controllers
 {
+    [Authorize]
     public class MoedaController : Controller
     {
         private readonly IMoedaAppService _moedaApp;
